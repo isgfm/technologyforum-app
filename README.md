@@ -1,4 +1,3 @@
-# technologyforum_app
 
 ## Project setup
 ```
@@ -22,3 +21,7 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+# technologyforum-app
+毕业设计-技术论坛前端
+
