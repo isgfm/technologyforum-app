@@ -1,7 +1,7 @@
 import FrontdeskHome from 'frontdesk/home/page/Home'
 
 const homeRouter = {
-    path:'/home',
+    path:'',
     name:'FrontdeskHome',
     component: FrontdeskHome
 };
