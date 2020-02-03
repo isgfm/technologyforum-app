@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import homeRouter from 'frontdesk/home/homeRouterConfig'
+import homeRouter from '@frontdesk/home/homeRouterConfig'
 
 // import { getToken } from '../request/token';
 // import store from './../store/index';

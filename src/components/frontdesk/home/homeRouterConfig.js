@@ -1,4 +1,4 @@
-import FrontdeskHome from 'frontdesk/home/page/Home'
+import FrontdeskHome from '@frontdesk/home/page/Home'
 
 const homeRouter = {
     path:'',

@@ -1,0 +1,41 @@
+#Wrapper{
+    text-align: center;
+    background-color: #e2e2e2;
+    background-image: url(~@/assets/img/shadow_light.png);
+    background-repeat: repeat-x;
+}
+
+#Main {
+    width: auto;
+    margin: 0 310px 0 20px;
+}
+
+#Rightbar {
+    width: 270px;
+    float: right;
+    margin-right: 20px;
+}
+
+#Leftbar {
+    width: 0;
+    float: left;
+}
+
+a:active, a:link, a:visited {
+    color: #778087;
+    text-decoration: none;
+    word-break: break-word;
+}
+
+.cell {
+    padding: 10px;
+    font-size: 14px;
+    line-height: 120%;
+    text-align: left;
+    border-bottom: 1px solid var(--box-border-color);
+}
+
+.item {
+    background-position: 0 bottom;
+    background-repeat: repeat-x;
+}

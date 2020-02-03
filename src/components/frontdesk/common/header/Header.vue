@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import FrontdeskSearch from 'frontdesk/common/search/FrontdeskSearch'
+import FrontdeskSearch from '@frontdesk/common/search/FrontdeskSearch'
 
 export default {
   name:'FrontdeskHeader',
@@ -66,9 +66,7 @@ export default {
 .header-button{
   padding-top: 2px;
 }
-.search{
-  /* width:380px; */
-}
+
 a.top{
   color: #556;
   text-decoration: none;
