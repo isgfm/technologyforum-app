@@ -10,7 +10,12 @@
       v-bind:key="tab.cName"> </a>
     </div>
     <div class="cell" id="SecondaryTabs">
-        <a v-for="secondaryTab in secondaryTabs" class="secondarytab" :data-nodeId="secondaryTab.nId" :href="nodeUrl(secondaryTab.cRouter)" v-text="secondaryTab.cName" v-bind:key="secondaryTab.cName"> </a>
+        <a v-for="secondaryTab in secondaryTabs" 
+        class="secondarytab" 
+        :data-nodeId="secondaryTab.nId" 
+        :href="nodeUrl(secondaryTab.cRouter)" 
+        v-text="secondaryTab.cName" 
+        v-bind:key="secondaryTab.cName"> </a>
     </div>
   </div>
 </template>
