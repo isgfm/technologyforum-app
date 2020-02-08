@@ -1,25 +1,33 @@
 import request from '@/request/index'
 
-export function getThemeListByTabId(tabId,startIndex,endIndex){
+export function getThemeListByTabId(tabId,offset,pageSize){
     return request({
-        url:'/theme/themelist/tab',
+        url:'/theme/themelist/tab/'+tabId,
         method:'get',
         params:{
-            tabId:tabId,
-            startIndex:startIndex,
-            endIndex:endIndex
+            offset:offset,
+            pageSize:pageSize
         }
     });
 }
 
-export function getThemeListByNodeId(nodeId,startIndex,endIndex){
+export function getThemeListByNodeId(nodeId,offset,pageSize){
     return request({
-        url:'/theme/themelist/node',
+        url:'/theme/themelist/node/'+nodeId,
         method:'get',
         params:{
-            nodeId:nodeId,
-            startIndex:startIndex,
-            endIndex:endIndex
+            offset:offset,
+            pageSize:pageSize
+        }
+    });
+}
+
+export function getTodayHotTheme(limit){
+    return request({
+        url:'/theme/hot',
+        method:'get',
+        params:{
+            limit:limit
         }
     });
 }

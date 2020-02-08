@@ -5,7 +5,8 @@ const themeClassStore={
     state:{
         themeClass_tabs:[],
         parentIdMap:[],
-        activeTab:''
+        activeTab:'',
+        themeClassList:[]
     },
     mutations:{
         setThemeClass_tabs(state,themeClass_tabs){
@@ -16,7 +17,10 @@ const themeClassStore={
         },
         setActiveTab(state,activeTab){
             state.activeTab = activeTab;
-        }
+        },
+        setThemeClassList(state,themeClassList){
+            state.themeClassList = themeClassList;
+        },
     },
     actions:{
         getThemeClass({commit}){
@@ -24,9 +28,10 @@ const themeClassStore={
                 getHomeThemeClass().then(data=>{
                     let result = data.data;
                     if(!R.isEmpty(result)){
-                        commit('setThemeClass_tabs',result.data.tabs);
-                        commit('setparentIdMap',result.data.parentIdMap);
-                        commit('setActiveTab',result.data.tabs[0].nId);
+                        commit('setThemeClass_tabs',result.tabs);
+                        commit('setparentIdMap',result.parentIdMap);
+                        commit('setActiveTab',result.tabs[0].nId);
+                        commit('setThemeClassList',concat(result.parentIdMap));
                     }
                     resolve();
                 }).catch(error=>{
@@ -40,4 +45,12 @@ const themeClassStore={
     }
 }
 
+function concat(parentIdMap){
+    let parentId;
+    let result = [];
+    for(parentId in parentIdMap){
+        result = result.concat(parentIdMap[parentId]);
+    }
+    return result;
+}
 export default themeClassStore;

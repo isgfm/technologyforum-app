@@ -16,3 +16,13 @@ export function getHomeThemeClass(){
         method:'get'
     });
 }
+
+export function getHotNode(limit){
+    return request({
+        url:'/theme/class/hot',
+        method:'get',
+        params:{
+            limit:limit
+        }
+    });
+}

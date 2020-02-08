@@ -3,7 +3,7 @@
     <div class="inner" id="Tabs">
       <a v-for="tab in tabs" 
       v-text="tab.cName" 
-      :href="tabUrl(tab.cRouter)" 
+      :href="tabUrl(tab.cRouter)"
       v-on:click="changeSecondaryTab($event)"
       :data-tabsId="tab.nId"
       v-bind:class='tab.nId==isActive?"tab_current":"tab"'
@@ -22,7 +22,7 @@
 
 <script>
 import $ from 'jquery'
-import {filter} from 'ramda'
+import {offset,pageSize} from '@constant/themeConstant'
 export default {
     name: "TabsNavigation",
     data:function(){
@@ -32,6 +32,7 @@ export default {
         changeSecondaryTab:function(){
           let tabId = $(event.target).attr("data-tabsId");
           this.$store.dispatch("setActiveTab",tabId);
+          this.$store.dispatch("getTabThemeList",{tabId,offset,pageSize})
         },
         tabUrl:function(url){
           return "#tab="+url;

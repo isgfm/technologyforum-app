@@ -1,7 +1,7 @@
-import{getThemeListByTabId,getThemeListByNodeId} from '@api/theme/themeClassApi'
+import{getThemeListByTabId,getThemeListByNodeId} from '@api/theme/themeApi'
 import * as R from 'ramda'
 
-const themeClassStore={
+const themeStore={
     state:{
         themeList:[]
     },
@@ -11,10 +11,23 @@ const themeClassStore={
         }
     },
     actions:{
-        getThemeList({commit}){
+        getTabThemeList({commit},{tabId,offset,pageSize}){
             return new Promise((resolve,reject)=>{
-                getThemeListByTabId().then(data=>{
-                    let result = data.data;
+                getThemeListByTabId(tabId,offset,pageSize).then(data=>{
+                    let result = data;
+                    if(!R.isEmpty(result)){
+                        commit('setThemeList',result.data);
+                    }
+                    resolve();
+                }).catch(error=>{
+                    reject(error);
+                });
+            })
+        },
+        getNodeThemeList({commit},{nodeId,offset,pageSize}){
+            return new Promise((resolve,reject)=>{
+                getThemeListByNodeId(nodeId,offset,pageSize).then(data=>{
+                    let result = data;
                     if(!R.isEmpty(result)){
                         commit('setThemeList',result.data);
                     }
@@ -27,4 +40,4 @@ const themeClassStore={
     }
 }
 
-export default themeClassStore;
+export default themeStore;
