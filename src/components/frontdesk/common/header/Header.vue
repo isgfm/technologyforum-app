@@ -15,11 +15,11 @@
       </el-col>
       <el-col :span="11">
         <div class="header-button float-right">
-          <a href="/" class="top">首页</a>
+          <router-link to="/">首页</router-link>
           &nbsp;&nbsp;&nbsp;
           <a href="/signup" class="top">注册</a>
           &nbsp;&nbsp;&nbsp;
-          <a href="/login" class="top">登录</a>
+          <router-link to="/login">登录</router-link>
         </div>
       </el-col>
     </el-row>

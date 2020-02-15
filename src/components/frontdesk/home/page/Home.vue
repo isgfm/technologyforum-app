@@ -3,20 +3,10 @@
     <frontdesk-header></frontdesk-header>
     <div id="Wrapper">
       <div class="content">
-        <div id="Rightbar">
-          <div class="sep20"></div>
-          <forum-state />
-          <div class="sep20"></div>
-          <today-hottheme/>
-          <div class="sep20"></div>
-          <hot-node/>
-        </div>
+        <router-view name="right"></router-view>
         <div id="Main">
           <div class="sep20"></div>
-          <div class="box">
-            <tabs-navigation />
-            <home-themelist />
-          </div>
+          <router-view name="main"></router-view>
         </div>
       </div>
     </div>
@@ -27,21 +17,14 @@
 <script>
 import FrontdeskHeader from "@frontdesk/common/header/Header";
 import FrontdeskFooter from "@frontdesk/common/footer/Footer";
-import TabsNavigation from "@frontdesk/home/components/tabsNavigation/TabsNavigation";
-import HomeThemeList from "@frontdesk/home/components/themeList/ThemeList";
-import ForumState from "@frontdesk/home/components/forumState/ForumState";
-import TodayHotTheme from "@frontdesk/home/components/todayHotTheme/TodayHotTheme"
-import HotNode from "@frontdesk/home/components/hotNode/HotNode"
+
+
 export default {
   name: "FrontdeskHome",
   components: {
     "frontdesk-header": FrontdeskHeader,
     "frontdesk-footer": FrontdeskFooter,
-    "tabs-navigation": TabsNavigation,
-    "home-themelist": HomeThemeList,
-    "forum-state": ForumState,
-    "today-hottheme":TodayHotTheme,
-    "hot-node":HotNode
+    
   },
   created: function() {
     this.getThemeClass();

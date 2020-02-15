@@ -76,6 +76,13 @@ a:active, a:link, a:visited {
     border: 1px solid #e5e5e5;
 }
 
+.inner {
+    padding: 10px;
+    font-size: 14px;
+    line-height: 150%;
+    text-align: left;
+}
+
 img.avatar {
     border-radius: 4px;
 }

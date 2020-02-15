@@ -29,6 +29,7 @@ module.exports = {
           .set('@frontdesk',resolve('src/components/frontdesk'))
           .set('@backstage',resolve('src/components/backstage'))
           .set('@constant',resolve('src/constant'))
+          .set('@common',resolve('src/components/common'))
           // .set('base',resolve('src/base'))
           // .set('static',resolve('src/static'))
   }
