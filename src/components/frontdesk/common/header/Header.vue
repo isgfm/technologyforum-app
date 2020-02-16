@@ -15,11 +15,16 @@
       </el-col>
       <el-col :span="11">
         <div class="header-button float-right">
+        <template v-if="!isLogIn">
           <router-link to="/">首页</router-link>
           &nbsp;&nbsp;&nbsp;
           <a href="/signup" class="top">注册</a>
           &nbsp;&nbsp;&nbsp;
           <router-link to="/login">登录</router-link>
+        </template>
+          <template v-else>
+            <a href="/" class="top">{{username()}}</a>
+          </template>
         </div>
       </el-col>
     </el-row>
@@ -33,6 +38,26 @@ export default {
   name:'FrontdeskHeader',
   components:{
     'frontdesk-search':FrontdeskSearch
+  },
+  computed:{
+    isLogIn(){
+      return this.$store.state.userStore.id != -1;
+    },
+    username(){
+      return this.$store.state.userStore.username;
+    }
+  },
+  methods:{
+logout(){
+      let that = this
+        this.$store.dispatch('logout').then(() => {
+          this.$router.push({path: '/'})
+        }).catch((error) => {
+          if (error !== 'error') {
+            that.$message({message: error, type: 'error', showClose: true});
+          }
+        })
+    }
   }
 }
 </script>

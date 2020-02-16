@@ -22,6 +22,10 @@ const frontdeskRouter = {
                 main:LoginMain,
                 right:LoginRight
             }
+            // meta:{
+            //     requireLogin: true,
+            //     requireAdmin:true
+            // }
         }
     ]
 

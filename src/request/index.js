@@ -9,22 +9,22 @@ const service = axios.create({
 })
 
 
-// service.interceptors.request.use(config => {
-//     if (store.state.user.token != '') {
-//         config.headers['Oauth-Token'] = getToken();
-//     }
-//     return config;
-// }, error => {
-//     Promise.reject(error);
-// });
+service.interceptors.request.use(config => {
+    if (store.state.userStore.token != '') {
+        config.headers['Oauth-Token'] = getToken();
+    }
+    return config;
+}, error => {
+    Promise.reject(error);
+});
 
 service.interceptors.response.use(
     response => {
   
-    //   //全局统一处理 Session超时
-    //   if (response.headers['session_time_out'] == 'timeout') {
-    //     store.dispatch('fedLogOut')
-    //   }
+      //全局统一处理 Session超时
+      if (response.headers['session_time_out'] == 'timeout') {
+        store.dispatch('fedLogOut')
+      }
   
       let res = response.data;
   

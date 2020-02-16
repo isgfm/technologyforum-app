@@ -1,4 +1,4 @@
-import request from '../request/index'
+import request from '@/request/index'
 
 export function login(username, password) {
   const data = {

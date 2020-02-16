@@ -4,7 +4,6 @@ const userStore = {
     state:{
         id:-1,
         username:'',
-        admin:false,
         token:getToken()
     },
     mutations:{
@@ -16,9 +15,6 @@ const userStore = {
         },
         setUsername(state,username){
             state.username = username;
-        },
-        setAdmin(state,admin){
-            state.admin = admin;
         }
     },
     actions:{
@@ -26,9 +22,8 @@ const userStore = {
             return new Promise((resolve, reject) => {
               login(user).then(data => {
                 commit('setToken', data.data['Oauth-Token'])
-                commit('setId', data.data['id'])
-                commit('setUsername', data.data['username'])
-                commit('setAdmin', data.data['admin'])
+                commit('setId', data.data['nId'])
+                commit('setUsername', data.data['cUsername'])
                 setToken(data.data['Oauth-Token'])
                 resolve()
               }).catch(error => {
@@ -41,13 +36,12 @@ const userStore = {
             return new Promise((resolve, reject) => {
               getCurrentUserInfo().then(data => {
                 if (data.data) {
-                  commit('setUsername', data.data.username)
-                  commit('setId', data.data.id)
-                  commit('setAdmin', data.data.admin)
+                  commit('setUsername', data.data.cUsername)
+                  commit('setId', data.data.nId)
                 } else {
                   commit('setUsername', '')
                   commit('setId', -1)
-                  commit('setAdmin', false)
+                  
                   removeToken()
                 }
                 resolve(data)
@@ -64,7 +58,6 @@ const userStore = {
                 commit('setToken', '')
                 commit('setUsername', '')
                 commit('setId', -1)
-                commit('setAdmin', false)
                 removeToken()
                 resolve()
               }).catch(error => {
@@ -78,7 +71,6 @@ const userStore = {
               commit('setToken', '')
               commit('setUsername', '')
               commit('setId', -1)
-              commit('setAdmin', false)
               removeToken()
               resolve()
             }).catch(error => {
@@ -89,9 +81,8 @@ const userStore = {
             return new Promise((resolve, reject) => {
               register(user.username, user.password).then((data) => {
                 commit('setToken', data.data['Oauth-Token'])
-                commit('setId', data.data['id'])
-                commit('setUsername', data.data['username'])
-                commit('setAdmin', data.data['admin'])
+                commit('setId', data.data['nId'])
+                commit('setUsername', data.data['cUsername'])
                 setToken(data.data['Oauth-Token'])
                 resolve()
               }).catch((error) => {

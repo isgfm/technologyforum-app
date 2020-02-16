@@ -1,6 +1,7 @@
 import Vuex from 'vuex'
 import themeClassStore from './theme/themeClassStore'
 import themeStore from './theme/themeStore'
+import userStore from './user/userStore'
 import Vue from 'vue'
 
 Vue.use(Vuex);
@@ -8,7 +9,8 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
     modules:{
         themeClassStore:themeClassStore,
-        themeStore:themeStore
+        themeStore:themeStore,
+        userStore:userStore
     }
 })
 
