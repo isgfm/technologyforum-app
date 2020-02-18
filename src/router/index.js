@@ -1,74 +1,40 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import frontdeskRouter from '@frontdesk/frontdeskRouterConfig'
-import { getToken } from '../request/token';
-import store from './../store/index';
-import { Message } from 'element-ui';
+import Vue from "vue";
+import Router from "vue-router";
+import frontdeskRouter from "@frontdesk/frontdeskRouterConfig";
+import { getToken } from "../request/token";
+import store from "./../store/index";
+import { Message } from "element-ui";
 
-Vue.use(Router)
+Vue.use(Router);
 
 const router = new Router({
-    routes:[
-        frontdeskRouter
-    ]
+  routes: [frontdeskRouter]
 });
 
-router.beforeEach((to,from,next)=>{
-    if(getToken()){
-        if(to.path === '/login'){
-            next({path:'/'});
-        }else{
-            if(store.state.userStore.id === -1){
-                store.dispatch('getUserInfo').then(data => { //获取用户信息
-                    if(to.matched.some(r => r.meta.requireAdmin)){
-                        if(store.state.userStore.admin===true)
-                            next()
-                        else{
-                            Message({
-                                type: 'warning',
-                                showClose: true,
-                                message: '需要管理员权限'
-                              })
-                              next({path: '/'});
-                        }
-    
-                    }else{
-                        next()
-                    }
-                  }).catch(() => {
-                    next({path: '/'});
-                })
-            }else{
-                if(to.matched.some(r => r.meta.requireAdmin)){
-                    if(store.state.userStore.admin===true)
-                        next()
-                    else{
-                        Message({
-                            type: 'warning',
-                            showClose: true,
-                            message: '需要管理员权限'
-                          })
-                          next({path: '/'});
-                    }
-
-                }else{
-                    next()
-                }
-            }
-        }
-    }else{
-        if (to.matched.some(r => r.meta.requireLogin)) {
-            Message({
-              type: 'warning',
-              showClose: true,
-              message: '请先登录哦'
-            })
-      
-          }
-          else {
-            next();
-          }
+router.beforeEach((to, from, next) => {
+  if (getToken()) {
+    if (store.state.userStore.id === -1) {
+      store
+        .dispatch("getUserInfo")
+        .then(data => {
+          //获取用户信息
+          next();
+        })
+        .catch(() => {
+          next({ path: "/" });
+        });
     }
-})
+  } else {
+    if (to.matched.some(r => r.meta.requireLogin)) {
+      Message({
+        type: "warning",
+        showClose: true,
+        message: "请先登录哦"
+      });
+    } else {
+      next();
+    }
+  }
+});
 
 export default router;

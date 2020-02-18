@@ -3,7 +3,8 @@ import HomeMain from '@frontdesk/home/page/HomeMain'
 import HomeRight from '@frontdesk/home/page/HomeRight'
 import LoginMain from '@frontdesk/login/page/LoginMain'
 import LoginRight from '@frontdesk/login/page/LoginRight'
-
+import SignupMain from '@frontdesk/signup/page/SignupMain'
+import SignupRight from '@frontdesk/signup/page/SignupRight'
 const frontdeskRouter = {
     path:'',
     name:'FrontdeskHome',
@@ -26,6 +27,13 @@ const frontdeskRouter = {
             //     requireLogin: true,
             //     requireAdmin:true
             // }
+        },
+        {
+            path:'/signup',
+            components:{
+                main:SignupMain,
+                right:SignupRight
+            }
         }
     ]
 

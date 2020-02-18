@@ -18,12 +18,12 @@
         <template v-if="!isLogIn">
           <router-link to="/">首页</router-link>
           &nbsp;&nbsp;&nbsp;
-          <a href="/signup" class="top">注册</a>
+          <router-link to="/signup">注册</router-link>
           &nbsp;&nbsp;&nbsp;
           <router-link to="/login">登录</router-link>
         </template>
           <template v-else>
-            <a href="/" class="top">{{username()}}</a>
+            <a href="/" v-text="username" class="top"></a>
           </template>
         </div>
       </el-col>

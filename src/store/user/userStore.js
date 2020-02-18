@@ -18,9 +18,9 @@ const userStore = {
         }
     },
     actions:{
-        login({commit}, user) {
+        login({commit}, loginForm) {
             return new Promise((resolve, reject) => {
-              login(user).then(data => {
+              login(loginForm.username,loginForm.password,loginForm.captcha).then(data => {
                 commit('setToken', data.data['Oauth-Token'])
                 commit('setId', data.data['nId'])
                 commit('setUsername', data.data['cUsername'])
@@ -41,7 +41,6 @@ const userStore = {
                 } else {
                   commit('setUsername', '')
                   commit('setId', -1)
-                  
                   removeToken()
                 }
                 resolve(data)
@@ -77,9 +76,9 @@ const userStore = {
               throw (error)
             })
           },
-          register({commit}, user) {
+          register({commit}, signupForm) {
             return new Promise((resolve, reject) => {
-              register(user.username, user.password).then((data) => {
+              register(signupForm.username, signupForm.password,signupForm.captcha).then((data) => {
                 commit('setToken', data.data['Oauth-Token'])
                 commit('setId', data.data['nId'])
                 commit('setUsername', data.data['cUsername'])

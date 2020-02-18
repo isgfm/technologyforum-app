@@ -1,10 +1,11 @@
 import request from '@/request/index'
 
-export function login(username, password) {
-  const data = {
+export function login(username,password,captcha) {
+  let data = {
     username,
-    password
-  }
+    password,
+    captcha
+  };
   return request({
     url: '/login',
     method: 'post',
@@ -26,11 +27,12 @@ export function getCurrentUserInfo() {
   })
 }
 
-export function register(username, password) {
-  const data = {
+export function register(username,password,captcha) {
+  let data = {
     username,
-    password
-  }
+    password,
+    captcha
+  };
   return request({
     url: '/register',
     method: 'post',

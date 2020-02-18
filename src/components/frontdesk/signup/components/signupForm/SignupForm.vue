@@ -1,7 +1,7 @@
 <template>
   <el-form
-    ref="loginForm"
-    :model="loginForm"
+    ref="signupForm"
+    :model="signupForm"
     :rules="rules"
     label-position="right"
     label-width="155px"
@@ -11,7 +11,7 @@
       <el-col :span="12">
         <el-input
           placeholder="用户名或电子邮箱"
-          v-model="loginForm.username"
+          v-model="signupForm.username"
         ></el-input>
       </el-col>
     </el-form-item>
@@ -21,7 +21,16 @@
         <el-input
           placeholder="密码"
           type="password"
-          v-model="loginForm.password"
+          v-model="signupForm.password"
+        ></el-input>
+      </el-col>
+    </el-form-item>
+    <el-form-item label="确认密码" prop="checkPassword">
+      <el-col :span="12">
+        <el-input
+          placeholder="确认密码"
+          type="password"
+          v-model="signupForm.checkPassword"
         ></el-input>
       </el-col>
     </el-form-item>
@@ -32,14 +41,14 @@
       <el-col :span="12">
         <el-input
           placeholder="请输入上图中的验证码"
-          v-model="loginForm.captcha"
+          v-model="signupForm.captcha"
         ></el-input>
       </el-col>
     </el-form-item>
     <el-form-item size="small" class="me-login-button">
       <el-col :span="2">
-        <el-button type="primary" @click.native.prevent="login('loginForm')"
-        >登录</el-button
+        <el-button type="primary" @click.native.prevent="signup('signupForm')"
+        >注册</el-button
       >
       </el-col>
       
@@ -50,15 +59,25 @@
 <script>
 import Captcha from "@common/captcha/Captcha";
 export default {
-  name: "Login",
+  name: "Signup",
   components: {
     captcha: Captcha
   },
   data() {
+      var validateCheckPass = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请再次输入密码'));
+        } else if (value !== this.signupForm.password) {
+          callback(new Error('两次输入密码不一致!'));
+        } else {
+          callback();
+        }
+      };
     return {
-      loginForm: {
+      signupForm: {
         username: "",
         password: "",
+        checkPassword:'',
         captcha: ""
       },
       rules: {
@@ -73,18 +92,22 @@ export default {
         captcha: [
           { required: true, message: "请输入验证码", trigger: "blur" },
           { min: 5, max: 5, message: "验证码为5位字符", trigger: "blur" }
+        ],
+        checkPassword:[
+            { validator: validateCheckPass, trigger: 'blur' }
         ]
       }
     };
   },
   methods: {
-    login(formName) {
+    signup(formName) {
       let that = this;
       this.$refs[formName].validate(valid => {
         if (valid) {
           that.$store
-            .dispatch("login", that.loginForm)
+            .dispatch("register", that.signupForm)
             .then(() => {
+                that.$message({message: '注册成功 跳转至首页', type: 'success', showClose: true});
               that.$router.go(-1);
             })
             .catch(error => {
