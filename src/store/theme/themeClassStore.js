@@ -27,6 +27,7 @@ const themeClassStore={
             return new Promise((resolve,reject)=>{
                 getHomeThemeClass().then(data=>{
                     let result = data.data;
+                    
                     if(!R.isEmpty(result)){
                         commit('setThemeClass_tabs',result.tabs);
                         commit('setparentIdMap',result.parentIdMap);

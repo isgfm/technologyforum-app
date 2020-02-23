@@ -2,19 +2,15 @@ import {getToken,setToken, removeToken} from '@/request/token'
 import {login, getCurrentUserInfo, logout, register} from '@api/user/user'
 const userStore = {
     state:{
-        id:-1,
-        username:'',
+        user:null,
         token:getToken()
     },
     mutations:{
         setToken(state,token){
             state.token = token;
         },
-        setId(state,id){
-            state.id = id;
-        },
-        setUsername(state,username){
-            state.username = username;
+        setUser(state,user){
+            state.user = user;
         }
     },
     actions:{
@@ -22,8 +18,7 @@ const userStore = {
             return new Promise((resolve, reject) => {
               login(loginForm.username,loginForm.password,loginForm.captcha).then(data => {
                 commit('setToken', data.data['Oauth-Token'])
-                commit('setId', data.data['nId'])
-                commit('setUsername', data.data['cUsername'])
+                commit('setUser', data.data['user'])
                 setToken(data.data['Oauth-Token'])
                 resolve()
               }).catch(error => {
@@ -36,11 +31,9 @@ const userStore = {
             return new Promise((resolve, reject) => {
               getCurrentUserInfo().then(data => {
                 if (data.data) {
-                  commit('setUsername', data.data.cUsername)
-                  commit('setId', data.data.nId)
+                  commit('setUser', data.data)
                 } else {
-                  commit('setUsername', '')
-                  commit('setId', -1)
+                  commit('setUser', null)
                   removeToken()
                 }
                 resolve(data)
@@ -55,8 +48,7 @@ const userStore = {
               logout().then(data => {
                 data;
                 commit('setToken', '')
-                commit('setUsername', '')
-                commit('setId', -1)
+                commit('setUser', null)
                 removeToken()
                 resolve()
               }).catch(error => {
@@ -68,8 +60,7 @@ const userStore = {
           fedLogOut({commit}) {
             return new Promise((resolve) => {
               commit('setToken', '')
-              commit('setUsername', '')
-              commit('setId', -1)
+              commit('setUser', null)
               removeToken()
               resolve()
             }).catch(error => {
@@ -80,8 +71,7 @@ const userStore = {
             return new Promise((resolve, reject) => {
               register(signupForm.username, signupForm.password,signupForm.captcha).then((data) => {
                 commit('setToken', data.data['Oauth-Token'])
-                commit('setId', data.data['nId'])
-                commit('setUsername', data.data['cUsername'])
+                commit('setUser', data.data['user'])
                 setToken(data.data['Oauth-Token'])
                 resolve()
               }).catch((error) => {

@@ -5,6 +5,9 @@ import LoginMain from '@frontdesk/login/page/LoginMain'
 import LoginRight from '@frontdesk/login/page/LoginRight'
 import SignupMain from '@frontdesk/signup/page/SignupMain'
 import SignupRight from '@frontdesk/signup/page/SignupRight'
+import CreateThemeMain from '@frontdesk/createTheme/page/CreateThemeMain'
+import CreateThemeRight from '@frontdesk/createTheme/page/CreateThemeRight'
+
 const frontdeskRouter = {
     path:'',
     name:'FrontdeskHome',
@@ -33,6 +36,16 @@ const frontdeskRouter = {
             components:{
                 main:SignupMain,
                 right:SignupRight
+            }
+        },
+        {
+            path:'/new',
+            components:{
+                main:CreateThemeMain,
+                right:CreateThemeRight
+            },
+            meta:{
+                requireLogin: true
             }
         }
     ]

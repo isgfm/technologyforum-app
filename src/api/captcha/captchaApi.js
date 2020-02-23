@@ -1,4 +1,5 @@
-import request from '@/request/index'
+import request from '@/request/pure'
+
 
 export function getCaptcha(){
     return request({

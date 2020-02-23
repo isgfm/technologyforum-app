@@ -1,4 +1,5 @@
 import request from '@/request/index'
+import {getCaptcha_Redis_key} from '@/request/captcha'
 
 export function login(username,password,captcha) {
   let data = {
@@ -9,6 +10,7 @@ export function login(username,password,captcha) {
   return request({
     url: '/login',
     method: 'post',
+    headers:{'header-captcha':getCaptcha_Redis_key()},
     data
   })
 }
@@ -36,6 +38,7 @@ export function register(username,password,captcha) {
   return request({
     url: '/register',
     method: 'post',
+    headers:{'header-captcha':getCaptcha_Redis_key()},
     data
   })
 }

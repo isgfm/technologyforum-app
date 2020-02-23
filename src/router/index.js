@@ -13,17 +13,18 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (getToken()) {
-    if (store.state.userStore.id === -1) {
+    if (store.state.userStore.user === null) {
       store
         .dispatch("getUserInfo")
         .then(data => {
           //获取用户信息
           next();
         })
-        .catch(() => {
-          next({ path: "/" });
+        .catch(error => {
+          next();
         });
     }
+    next();
   } else {
     if (to.matched.some(r => r.meta.requireLogin)) {
       Message({
@@ -31,6 +32,7 @@ router.beforeEach((to, from, next) => {
         showClose: true,
         message: "请先登录哦"
       });
+      
     } else {
       next();
     }

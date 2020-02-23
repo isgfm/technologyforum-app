@@ -62,6 +62,10 @@ a:active, a:link, a:visited {
 .sep20 {
     height: 20px;
 }
+
+.sep10 {
+    height: 10px;
+}
 .gray {
     color: #999;
 }
@@ -74,6 +78,11 @@ a:active, a:link, a:visited {
     border-radius: 16px;
     display: inline-block;
     border: 1px solid #e5e5e5;
+}
+
+ul {
+    margin: 15px 0 15px 20px;
+    padding: 0;
 }
 
 .inner {
@@ -90,6 +99,10 @@ img.avatar {
     font-size: 12px;
     color: #ccc;
     line-height: 200%;
+}
+
+.bigger {
+    font-size: 16px;
 }
 
 a.topic-link:hover {
@@ -147,6 +160,21 @@ a.count_livid:active, a.count_livid:link {
     text-decoration: none;
     margin-right: 5px;
     word-break: break-all;
+}
+
+a.dark:active, a.dark:link, a.dark:visited {
+    color: gray;
+    text-decoration: none;
+}
+
+.sep3 {
+    height: 3px;
+}
+
+a:active, a:link, a:visited {
+    color: #778087;
+    text-decoration: none;
+    word-break: break-word;
 }
 
 :root {

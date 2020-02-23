@@ -10,7 +10,7 @@ const service = axios.create({
 
 
 service.interceptors.request.use(config => {
-    if (store.state.userStore.token != '') {
+    if (getToken() != '') {
         config.headers['Oauth-Token'] = getToken();
     }
     return config;
@@ -27,7 +27,9 @@ service.interceptors.response.use(
       }
   
       let res = response.data;
-  
+      // if(res.code === undefined)
+      //   res = JSON.parse(res);
+      // console.log(res);
       //0 为成功状态
       if (res.code !== 0) {
   
@@ -61,12 +63,33 @@ service.interceptors.response.use(
           })
           return Promise.reject('error');
         }
+
+        //20008 验证码过期
+        if (res.code === 20008) {
+          Message({
+            type: 'warning',
+            showClose: true,
+            message: '验证码过期'
+          })
+          return Promise.reject('error');
+        }
+
+        //20007 验证码错误
+        if (res.code === 20007) {
+          Message({
+            type: 'error',
+            showClose: true,
+            message: '验证码错误'
+          })
+          return Promise.reject('error');
+        }
   
         return Promise.reject(res.msg);
+        
       } else {
           try{
               res.data = JSON.parse(res.data);
-                return res;
+              return res;
           }catch(e){
               return res;
           }

@@ -3,9 +3,9 @@
     <el-row class="content">
       <el-col :span="3">
         <div class="logo-box float-left">
-          <a href="/" title="way to explore">
+          <router-link to="/" title="way to explore">
             <img :src="require('@/assets/img/v2ex@2x.png')" id="logo">
-          </a> 
+          </router-link> 
         </div>
       </el-col>
       <el-col :span="10">
@@ -24,6 +24,8 @@
         </template>
           <template v-else>
             <a href="/" v-text="username" class="top"></a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="#" @click="logout" class="top">登出</a>
           </template>
         </div>
       </el-col>
@@ -41,10 +43,10 @@ export default {
   },
   computed:{
     isLogIn(){
-      return this.$store.state.userStore.id != -1;
+      return this.$store.state.userStore.user != null;
     },
     username(){
-      return this.$store.state.userStore.username;
+      return this.$store.state.userStore.user.cUsername;
     }
   },
   methods:{

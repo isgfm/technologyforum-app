@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import EmptyRight from '@frontdesk/common/emptyRight/EmptyRight'
+import EmptyRight from '@frontdesk/common/right/EmptyRight'
 export default {
     name:'SignupRight',
     components:{
