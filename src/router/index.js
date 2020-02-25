@@ -8,6 +8,7 @@ import { Message } from "element-ui";
 Vue.use(Router);
 
 const router = new Router({
+  mode: 'history',
   routes: [frontdeskRouter]
 });
 
@@ -32,7 +33,7 @@ router.beforeEach((to, from, next) => {
         showClose: true,
         message: "请先登录哦"
       });
-      
+      next({path:'/'})
     } else {
       next();
     }

@@ -31,3 +31,16 @@ export function getTodayHotTheme(limit){
         }
     });
 }
+
+export function publishTheme(themeForm){
+    const data = {
+        cThemeTitle:themeForm.themeTitle,
+        cThemeContent:themeForm.themeContent,
+        nThemeClass:themeForm.themeClass
+    }
+    return request({
+        url:'/theme/publish',
+        method:'post',
+        data
+    });
+}
