@@ -11,9 +11,9 @@ const themeStore={
         }
     },
     actions:{
-        getTabThemeList({commit},{tabId,offset,pageSize}){
+        getTabThemeList({commit},{tabRouter,offset,pageSize}){
             return new Promise((resolve,reject)=>{
-                getThemeListByTabId(tabId,offset,pageSize).then(data=>{
+                getThemeListByTabId(tabRouter,offset,pageSize).then(data=>{
                     let result = data;
                     if(!R.isEmpty(result)){
                         commit('setThemeList',result.data);

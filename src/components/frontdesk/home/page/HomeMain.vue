@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <tabs-navigation />
+    <tabs-navigation :tabrouter="tabrouter"/>
     <home-themelist />
   </div>
 </template>
@@ -11,6 +11,12 @@ import HomeThemeList from "@frontdesk/home/components/themeList/ThemeList";
 
 export default {
   name: "HomeMain",
+  props:{
+    tabrouter:{
+      type:String,
+      default:''
+    }
+  },
   components: {
     "tabs-navigation": TabsNavigation,
     "home-themelist": HomeThemeList

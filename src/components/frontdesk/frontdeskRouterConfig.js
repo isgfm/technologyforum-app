@@ -14,10 +14,27 @@ const frontdeskRouter = {
     component:FrontdeskHome,
     children:[
         {
-            path:'/',
+            path:'',
             components:{
                 main:HomeMain,
                 right:HomeRight
+            },
+            meta:{
+                title:'首页'
+            } 
+        },
+        {
+            path:'/tab/:tabrouter',
+            components:{
+                main:HomeMain,
+                right:HomeRight
+            },
+            props:{
+                main:true,
+                right:false
+            },
+            meta:{
+                title:'首页'
             } 
         },
         {
@@ -25,17 +42,19 @@ const frontdeskRouter = {
             components:{
                 main:LoginMain,
                 right:LoginRight
+            },
+            meta:{
+                title:'登录'
             }
-            // meta:{
-            //     requireLogin: true,
-            //     requireAdmin:true
-            // }
         },
         {
             path:'/signup',
             components:{
                 main:SignupMain,
                 right:SignupRight
+            },
+            meta:{
+                title:'注册'
             }
         },
         {
@@ -45,6 +64,7 @@ const frontdeskRouter = {
                 right:CreateThemeRight
             },
             meta:{
+                title:'发布新主题',
                 requireLogin: true
             }
         }

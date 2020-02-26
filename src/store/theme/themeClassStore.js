@@ -1,12 +1,13 @@
-import{getHomeThemeClass} from '@api/theme/themeClassApi'
+import{getHomeThemeClass,getThemeClassTabs} from '@api/theme/themeClassApi'
 import * as R from 'ramda'
-
+import {offset,pageSize} from '@constant/themeConstant'
 const themeClassStore={
     state:{
         themeClass_tabs:[],
         parentIdMap:[],
         activeTab:'',
-        themeClassList:[]
+        themeClassList:[],
+        themeClass_nodes:[]
     },
     mutations:{
         setThemeClass_tabs(state,themeClass_tabs){
@@ -21,6 +22,9 @@ const themeClassStore={
         setThemeClassList(state,themeClassList){
             state.themeClassList = themeClassList;
         },
+        setThemeClass_nodes(state,themeClass_nodes){
+            state.themeClass_nodes = themeClass_nodes;
+        }
     },
     actions:{
         getThemeClass({commit}){
@@ -40,7 +44,24 @@ const themeClassStore={
                 });
             })
         },
+        getThemeClassTabs(context){
+            return new Promise((resolve,reject)=>{
+                getThemeClassTabs().then(data=>{
+                    let tabRouter = context.state.activeTab;
+                    context.commit('setThemeClass_tabs',data.data);
+                    if(context.state.activeTab===''){
+                        tabRouter = (data.data)[0].cRouter;
+                        context.commit('setActiveTab',tabRouter);
+                    }
+                    context.dispatch('getTabThemeList', {tabRouter,offset,pageSize}) ;
+                    resolve();
+                }).catch(error=>{
+                    reject(error);
+                });
+            })
+        },
         setActiveTab({commit},activeTab){
+            
             commit('setActiveTab',activeTab);
         }
     }

@@ -23,22 +23,7 @@ export default {
   name: "FrontdeskHome",
   components: {
     "frontdesk-header": FrontdeskHeader,
-    "frontdesk-footer": FrontdeskFooter,
-    
-  },
-  created: function() {
-    this.getThemeClass();
-  },
-  methods: {
-    getThemeClass: function() {
-      this.$store.dispatch("getThemeClass").catch(error => {
-        this.$message({
-          type: "error",
-          message: error + ":" + "分类加载失败",
-          showClose: true
-        });
-      });
-    }
+    "frontdesk-footer": FrontdeskFooter
   }
 };
 </script>

@@ -1,21 +1,21 @@
 <template>
   <div>
     <div class="inner" id="Tabs">
-      <a v-for="tab in tabs" 
+      <router-link v-for="tab in tabs" 
       v-text="tab.cName" 
-      :href="tabUrl(tab.cRouter)"
-      v-on:click="changeSecondaryTab($event)"
-      :data-tabsId="tab.nId"
-      v-bind:class='tab.nId==isActive?"tab_current":"tab"'
-      v-bind:key="tab.cName"> </a>
+      :to="tabUrl(tab.cRouter)"
+      v-on:click.native="changeSecondaryTab($event)"
+      :data-tabRouter="tab.cRouter"
+      v-bind:class='tab.cRouter==isActive?"tab_current":"tab"'
+      v-bind:key="tab.cName"> </router-link>
     </div>
     <div class="cell" id="SecondaryTabs">
-        <a v-for="secondaryTab in secondaryTabs" 
+        <router-link v-for="secondaryTab in secondaryTabs" 
         class="secondarytab" 
-        :data-nodeId="secondaryTab.nId" 
-        :href="nodeUrl(secondaryTab.cRouter)" 
+        :data-nodeRouter="secondaryTab.cRouter" 
+        :to="nodeUrl(secondaryTab.cRouter)" 
         v-text="secondaryTab.cName" 
-        v-bind:key="secondaryTab.cName"> </a>
+        v-bind:key="secondaryTab.cName"> </router-link>
     </div>
   </div>
 </template>
@@ -25,30 +25,54 @@ import $ from 'jquery'
 import {offset,pageSize} from '@constant/themeConstant'
 export default {
     name: "TabsNavigation",
+    props:{
+      tabrouter:{
+      type:String,
+      default:''
+    }
+    },
+  created: function() {
+    
+    this.$store.dispatch("setActiveTab",this.tabrouter).then(()=>{
+      this.getThemeClass();
+    });
+    
+  },
     data:function(){
         return {}
     },
     methods:{
         changeSecondaryTab:function(){
-          let tabId = $(event.target).attr("data-tabsId");
-          this.$store.dispatch("setActiveTab",tabId);
-          this.$store.dispatch("getTabThemeList",{tabId,offset,pageSize})
+          let tabRouter = $(event.target).attr("data-tabRouter");
+          console.log(tabRouter);
+          this.$store.dispatch("setActiveTab",tabRouter);
+          this.$store.dispatch("getTabThemeList",{tabRouter,offset,pageSize})
         },
         tabUrl:function(url){
-          return "#tab="+url;
+          return "/tab/"+url;
         },
         nodeUrl:function(url){
-          return "#go/"+url;
-        }
+          return "/go/"+url;
+        },
+        getThemeClass: function() {
+      this.$store.dispatch("getThemeClassTabs").catch(error => {
+        this.$message({
+          type: "error",
+          message: error + ":" + "分类加载失败",
+          showClose: true
+        });
+      });
+    }
     },
     computed:{
       tabs:function(){
         return this.$store.state.themeClassStore.themeClass_tabs;
       },
       secondaryTabs:function(){
-        let activeTabId = this.$store.state.themeClassStore.activeTab;
-        let parentIdMap = this.$store.state.themeClassStore.parentIdMap;
-        return parentIdMap[activeTabId];
+        // let activeTabId = this.$store.state.themeClassStore.activeTab;
+        // let parentIdMap = this.$store.state.themeClassStore.parentIdMap;
+        // return parentIdMap[activeTabId];
+        return this.$store.state.themeClassStore.themeClass_nodes;
       },
       isActive:function(){
         return this.$store.state.themeClassStore.activeTab;

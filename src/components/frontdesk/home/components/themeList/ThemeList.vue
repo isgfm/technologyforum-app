@@ -3,9 +3,9 @@
   <div class="cell item"  v-for="themeVO in themeList" v-bind:key="themeVO.nId">
       <div class="row">
         <div class="col-1">
-          <a :href="userUrl(themeVO.themeOwner.nId)">
+          <router-link :to="userUrl(themeVO.themeOwner.nId)">
             <img :src="themeVO.themeOwner.cAvatar" class="avatar"/>
-          </a>
+          </router-link>
         </div>
 
         <div class="col-10">
@@ -40,13 +40,13 @@ export default {
   name: "HomeThemeList",
   methods:{
     userUrl:function(userId){
-      return "#member/"+userId;
+      return "/member/"+userId;
     },
     nodeUrl:function(router){
-      return "#go/"+router;
+      return "/go/"+router;
     },
     themeUrl:function(themeId){
-      return '#t/'+themeId;
+      return '/t/'+themeId;
     },
     ftime:function(timespan){
       return Ftime(timespan);

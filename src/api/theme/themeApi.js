@@ -1,8 +1,8 @@
 import request from '@/request/index'
 
-export function getThemeListByTabId(tabId,offset,pageSize){
+export function getThemeListByTabId(tabRouter,offset,pageSize){
     return request({
-        url:'/theme/themelist/tab/'+tabId,
+        url:'/theme/themelist/tab/'+tabRouter,
         method:'get',
         params:{
             offset:offset,
