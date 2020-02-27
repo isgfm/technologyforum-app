@@ -44,5 +44,8 @@ export function Ftime (date) {
 }
 
 export function getClassNameById(classList,classId){
-    return R.find(R.propEq('nId',classId))(classList).cName;
+    let themeClass = R.find(R.propEq('nId',classId))(classList); 
+    if(themeClass == undefined)
+        return '';
+    return themeClass.cName;
 }

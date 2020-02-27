@@ -32,7 +32,6 @@ export default {
     }
     },
   created: function() {
-    
     this.$store.dispatch("setActiveTab",this.tabrouter).then(()=>{
       this.getThemeClass();
     });
@@ -43,10 +42,11 @@ export default {
     },
     methods:{
         changeSecondaryTab:function(){
+          
           let tabRouter = $(event.target).attr("data-tabRouter");
-          console.log(tabRouter);
           this.$store.dispatch("setActiveTab",tabRouter);
-          this.$store.dispatch("getTabThemeList",{tabRouter,offset,pageSize})
+          this.$store.dispatch("getNodes",tabRouter);
+          this.$store.dispatch("getTabThemeList",{tabRouter,offset,pageSize});
         },
         tabUrl:function(url){
           return "/tab/"+url;

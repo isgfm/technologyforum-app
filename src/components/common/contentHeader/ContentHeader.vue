@@ -14,18 +14,5 @@ export default {
 </script>
 
 <style>
-.header {
-    padding: 10px;
-    font-size: 15px;
-    line-height: 120%;
-    text-align: left;
-    border-bottom: 1px solid #e2e2e2;
-    overflow: auto;
-}
-
-.chevron {
-    font-family: lucida grande;
-    font-weight: 500;
-}
 
 </style>

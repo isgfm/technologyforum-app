@@ -52,7 +52,7 @@ export default {
       return Ftime(timespan);
     },
     getClassName:function(classId){
-      return getClassNameById(this.$store.state.themeClassStore.themeClassList,classId);
+      return getClassNameById(this.$store.state.themeClassStore.themeClass_nodes,classId);
     }
   },
   computed:{

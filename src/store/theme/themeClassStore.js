@@ -1,4 +1,4 @@
-import{getHomeThemeClass,getThemeClassTabs} from '@api/theme/themeClassApi'
+import{getHomeThemeClass,getThemeClassTabs,getNodesByTabRouter} from '@api/theme/themeClassApi'
 import * as R from 'ramda'
 import {offset,pageSize} from '@constant/themeConstant'
 const themeClassStore={
@@ -53,12 +53,18 @@ const themeClassStore={
                         tabRouter = (data.data)[0].cRouter;
                         context.commit('setActiveTab',tabRouter);
                     }
+                    context.dispatch('getNodes', tabRouter) ;
                     context.dispatch('getTabThemeList', {tabRouter,offset,pageSize}) ;
                     resolve();
                 }).catch(error=>{
                     reject(error);
                 });
             })
+        },
+        getNodes(context,tabRouter){
+            getNodesByTabRouter(tabRouter).then(data=>{
+                context.commit('setThemeClass_nodes',data.data);
+            });
         },
         setActiveTab({commit},activeTab){
             
