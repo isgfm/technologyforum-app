@@ -77,6 +77,11 @@ a:active, a:link, a:visited {
     font-weight: 500;
 }
 
+.fr {
+    float: right;
+    text-align: right;
+}
+
 .sep10 {
     height: 10px;
 }
