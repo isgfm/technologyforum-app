@@ -14,8 +14,8 @@
           </span>
           <div class="sep5"></div>
           <span class="topic_info">
-            <a class="node" :href="nodeUrl(themeVO.theme.nThemeClass)" v-text="getClassName(themeVO.theme.nThemeClass)"></a>
-             &nbsp;•&nbsp; 
+            <a class="node" :href="nodeUrl(themeVO.theme.nThemeClass)" v-text="themeVO.themeClassName"></a>
+             &nbsp;•&nbsp;
              <strong>
                <a :href="userUrl(themeVO.themeOwner.nId)" v-text="themeVO.themeOwner.cUsername"></a>
              </strong>

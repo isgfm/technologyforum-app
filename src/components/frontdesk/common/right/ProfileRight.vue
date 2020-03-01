@@ -3,14 +3,14 @@
     <div class="cell">
       <div class="row">
         <div class="col-2">
-          <a href="#">
+          <router-link :to="memberUrl(id)">
             <img :src="avatar" />
-          </a>
+          </router-link>
         </div>
         <div class="col-1"></div>
         <div>
           <span class="bigger">
-            <a href="/">{{ username }}</a>
+            <router-link :to="memberUrl(id)">{{ username }}</router-link>
           </span>
         </div>
       </div>
@@ -71,6 +71,14 @@ export default {
     },
     username: function() {
       return this.$store.state.userStore.user.cUsername;
+    },
+    id:function(){
+      return this.$store.state.userStore.user.nId;
+    }
+  },
+  methods:{
+    memberUrl(id){
+      return '/member/'+id;
     }
   }
 };
