@@ -9,11 +9,12 @@
       class="tb"
       >加入收藏</a
     >
-    </div>
   </div>
 </template>
 
 <script>
+import {keepTheme} from '@api/theme/themeApi'
+
 export default {
     props:{
         click:{

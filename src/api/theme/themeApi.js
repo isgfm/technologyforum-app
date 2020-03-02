@@ -44,3 +44,13 @@ export function publishTheme(themeForm){
         data
     });
 }
+
+export function keepTheme(id){
+    return request({
+        url:'/theme/kepp',
+        method:'get',
+        params:{
+            id:id
+        }
+    });
+}
