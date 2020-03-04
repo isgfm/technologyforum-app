@@ -24,10 +24,16 @@ export default {
         keepCount:{
             type:Number,
             default:0
+        },
+        themeId:{
+            type:Number,
+            default:0
         }
     },methods:{
         keep:function(){
+            keepTheme(this.themeId).then(data=>{
 
+            });
         }
     }
 };

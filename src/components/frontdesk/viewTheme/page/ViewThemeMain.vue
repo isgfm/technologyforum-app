@@ -29,14 +29,25 @@
         </div>
       </div>
     </div>
+    <TopicButtons
+      :click="theme.nClick"
+      :keepCount="theme.nKeepCount"
+      :themeId="theme.nId"
+    />
     <div class="sep20"></div>
+    <ReplyList />
   </div>
 </template>
 
 <script>
 import { Ftime } from "@util/themeUtil";
-
+import TopicButtons from "@frontdesk/viewTheme/components/topicButtons/TopicButtons";
+import ReplyList from "@frontdesk/viewTheme/components/replyList/ReplyList";
 export default {
+  components: {
+    TopicButtons,
+    ReplyList
+  },
   data() {
     return {
       theme: "",
