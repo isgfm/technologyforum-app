@@ -43,10 +43,20 @@
 import { Ftime } from "@util/themeUtil";
 import TopicButtons from "@frontdesk/viewTheme/components/topicButtons/TopicButtons";
 import ReplyList from "@frontdesk/viewTheme/components/replyList/ReplyList";
+import {getTheme} from "@api/theme/themeApi";
 export default {
   components: {
     TopicButtons,
     ReplyList
+  },
+  props:{
+    themeId:{
+      type:Number,
+      default:-1
+    }
+  },
+  created:{
+    
   },
   data() {
     return {

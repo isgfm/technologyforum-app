@@ -7,7 +7,8 @@ import SignupMain from '@frontdesk/signup/page/SignupMain'
 import SignupRight from '@frontdesk/signup/page/SignupRight'
 import CreateThemeMain from '@frontdesk/createTheme/page/CreateThemeMain'
 import CreateThemeRight from '@frontdesk/createTheme/page/CreateThemeRight'
-
+import ViewThemeMain from "@frontdesk/viewTheme/page/ViewThemeMain";
+import ViewThemeRight from "@frontdesk/viewTheme/page/ViewThemeRight";
 const frontdeskRouter = {
     path:'',
     name:'FrontdeskHome',
@@ -21,7 +22,7 @@ const frontdeskRouter = {
             },
             meta:{
                 title:'首页'
-            } 
+            }
         },
         {
             path:'/tab/:tabrouter',
@@ -35,7 +36,7 @@ const frontdeskRouter = {
             },
             meta:{
                 title:'首页'
-            } 
+            }
         },
         {
             path:'/login',
@@ -67,10 +68,15 @@ const frontdeskRouter = {
                 title:'发布新主题',
                 requireLogin: true
             }
-        }
+        },
+        {
+            path:'/t/:themeId',
+            components:{
+                main:ViewThemeMain,
+                right:ViewThemeRight
+            }
+        },
     ]
-
-    
 };
 
 export default frontdeskRouter;
