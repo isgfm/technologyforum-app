@@ -1,5 +1,11 @@
 <template>
   <div class="box">
+    <Pagination
+      :pageSize="pageSize"
+      :total="totalReply"
+      :currentPage="currentPage"
+      @currentChange="currentChange"
+    />
     <div class="cell">
       <span class="gray"
         >17 回复 &nbsp;<strong class="snow">|</strong> &nbsp;直到 2016-06-20
@@ -66,7 +72,42 @@
 </template>
 
 <script>
-export default {};
+import Pagination from "@common/pagination/Pagination";
+import { getThemeReply } from "@api/theme/themeReplyApi";
+export default {
+  created() {
+    //this.getThemeReplyFromServer(this.themeId,this.page,this.pageSize);
+  },
+  props: {
+    themeId: {
+      type: Number
+    }
+  },
+  components: {
+    Pagination
+  },
+  data() {
+    return {
+      replyList: [],
+      pageSize: 20,
+      totalReply: 1000,
+      currentPage: 1
+    };
+  },
+  methods: {
+    currentChange(newPage) {
+      this.currentPage = newPage;
+      console.log(newPage);
+    },
+    getThemeReplyFromServer(themeId, page, pageSize) {
+      getThemeReply(themeId, page, pageSize).then(data => {
+        let result = data.data;
+        this.replyList = result.replyList;
+        this.totalReply = result.totalReply;
+      });
+    }
+  }
+};
 </script>
 
 <style></style>

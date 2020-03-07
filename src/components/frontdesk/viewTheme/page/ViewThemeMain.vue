@@ -35,7 +35,7 @@
       :themeId="theme.nId"
     />
     <div class="sep20"></div>
-    <ReplyList />
+    <ReplyList :themeId="themeId"/>
   </div>
 </template>
 
@@ -44,6 +44,7 @@ import { Ftime } from "@util/themeUtil";
 import TopicButtons from "@frontdesk/viewTheme/components/topicButtons/TopicButtons";
 import ReplyList from "@frontdesk/viewTheme/components/replyList/ReplyList";
 import {getTheme} from "@api/theme/themeApi";
+import { Message } from 'element-ui';
 export default {
   components: {
     TopicButtons,
@@ -51,17 +52,15 @@ export default {
   },
   props:{
     themeId:{
-      type:Number,
-      default:-1
+      type:Number
     }
   },
-  created:{
-    
+  created(){
+    this.getThemeFromServer(this.themeId);
   },
   data() {
     return {
-      theme: "",
-      reply: []
+      theme: ""
     };
   },
   methods: {
@@ -70,6 +69,17 @@ export default {
     },
     ftime: function(timespan) {
       return Ftime(timespan);
+    },
+    getThemeFromServer:function(themeId){
+      getTheme(themeId).then(data=>{
+        this.theme = data.data;
+      }).catch(error=>{
+        this.$message({
+          message: error+"主题加载错误",
+          type: "error",
+          showClose: true
+        });
+      })
     }
   },
   computed: {

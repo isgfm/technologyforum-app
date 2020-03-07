@@ -5,14 +5,14 @@
       </div>
       <div class="cell row no-gutters" v-for="themeVO in todayHotThemeList" v-bind:key="themeVO.nId">
           <div class="col-1">
-            <router-link :href="userUrl(themeVO.themeOwner.nId)">
+            <router-link :to="userUrl(themeVO.themeOwner.nId)">
                 <img :src="themeVO.themeOwner.cAvatar" style="max-width: 24px; max-height: 24px;" class="avatar"/>
-            </ro>
+            </router-link>
           </div>
           <div class="col-1"></div>
           <div class="col-8">
               <span class="item_hot_topic_title">
-                  <router-link :href="themeUrl(themeVO.theme.nId)" v-text="themeVO.theme.cThemeTitle"></router-link>
+                  <router-link :to="themeUrl(themeVO.theme.nId)" v-text="themeVO.theme.cThemeTitle"></router-link>
               </span>
           </div>
       </div>
