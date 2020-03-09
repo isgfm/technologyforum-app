@@ -10,7 +10,7 @@
 
         <div class="col-10">
           <span class="item_title">
-            <router-link :href="themeUrl(themeVO.theme.nId)" v-text="themeVO.theme.cThemeTitle" class="topic-link"></router-link>
+            <router-link :to="themeUrl(themeVO.theme.nId)" v-text="themeVO.theme.cThemeTitle" class="topic-link"></router-link>
           </span>
           <div class="sep5"></div>
           <span class="topic_info">

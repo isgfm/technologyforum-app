@@ -1,87 +1,86 @@
 <template>
-  <div class="box">
-    <Pagination
-      :pageSize="pageSize"
-      :total="totalReply"
-      :currentPage="currentPage"
-      @currentChange="currentChange"
-    />
-    <div class="cell">
-      <span class="gray"
-        >17 回复 &nbsp;<strong class="snow">|</strong> &nbsp;直到 2016-06-20
-        17:44:52 +08:00</span
-      >
-    </div>
-    <div class="cell">
-      <table cellpadding="0" cellspacing="0" border="0" width="100%">
-        <tbody>
-          <tr>
-            <td width="48" valign="top" align="center">
-              <img
-                src="//cdn.v2ex.com/avatar/5e69/fda3/5275_normal.png?m=1334562540"
-                class="avatar"
-                border="0"
-                align="default"
-                alt="manhere"
-                loading="lazy"
-              />
-            </td>
-            <td width="10" valign="top"></td>
-            <td width="auto" valign="top" align="left">
+  <div>
+    <template v-if="isNoReply">
+      <div id="no-comments-yet">
+        目前尚无回复
+      </div>
+    </template>
+    <template v-else>
+      <div class="box">
+        <div class="cell">
+          <span class="gray"
+            >{{ totalReply }} 回复 &nbsp;<strong class="snow">|</strong>
+            &nbsp;最后回复 {{ lastThemeReply.dReplyTime }}</span
+          >
+        </div>
+        <template v-if="isMultiPage">
+          <Pagination
+            :pageSize="pageSize"
+            :total="totalReply"
+            :currentPage="currentPage"
+            @currentChange="currentChange"
+          />
+        </template>
+        <div
+          class="cell"
+          v-for="(reply, index) in replyList"
+          v-bind:key="reply.nId"
+        >
+          <div class="row">
+            <div class="col-1">
+              <router-link :to="memberUrl(reply.themeReplyOwner.nId)">
+                <img :src="reply.themeReplyOwner.cAvatar" class="avatar" />
+              </router-link>
+            </div>
+            <div class="col-11">
               <div class="fr">
-                <div id="thank_area_3289046" class="thank_area">
-                  <a
-                    href="#;"
-                    onclick="if (confirm('确认要不再显示来自 @manhere 的这条回复？')) { ignoreReply(3289046, '32658'); }"
-                    class="thank"
-                    style="color: #ccc;"
-                    >隐藏</a
-                  >
-                  &nbsp; &nbsp;
-                  <a
-                    href="#;"
-                    onclick="if (confirm('确认花费 10 个铜币向 @manhere 的这条回复发送感谢？')) { thankReply(3289046); }"
-                    class="thank"
-                    >感谢回复者</a
-                  >
-                </div>
-                &nbsp;
-                <a href="#;" onclick="replyOne('manhere');"
-                  ><img
-                    src="/static/img/reply_neue.png"
+                <!-- <div class="thank_area">
+              隐藏，感谢
+            </div> -->
+                <a href="#;">
+                  <img
+                    :src="require('@/assets/img/reply_neue.png')"
                     align="absmiddle"
                     border="0"
                     alt="Reply"
                     width="20"
-                /></a>
-                &nbsp;&nbsp; <span class="no">1</span>
+                  />
+                </a>
+                &nbsp;&nbsp;
+                <span class="no">{{ (index + 1) * currentPage }}</span>
               </div>
               <div class="sep3"></div>
-              <strong><a href="/member/manhere" class="dark">manhere</a></strong
-              >&nbsp; &nbsp;<span class="ago">2016-06-19 12:37:43 +08:00</span>
+              <strong>
+                <router-link
+                  :to="memberUrl(reply.themeReplyOwner.nId)"
+                  class="dark"
+                  >{{ reply.themeReplyOwner.cUsername }}</router-link
+                >
+              </strong>
+              &nbsp; &nbsp;
+              <span class="ago">{{ ftime(reply.themeReply.dReplyTime) }}</span>
               <div class="sep5"></div>
               <div class="reply_content">
-                “多个用户访问同一个帖子浏览量算作一次”，不是很理解这句，既然如此，还统计啥？
+                {{ reply.themeReply.cReplyContent }}
               </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
+import { Ftime } from "@util/themeUtil";
 import Pagination from "@common/pagination/Pagination";
 import { getThemeReply } from "@api/theme/themeReplyApi";
 export default {
   created() {
-    //this.getThemeReplyFromServer(this.themeId,this.page,this.pageSize);
+    this.getThemeReplyFromServer(this.themeId, this.currentPage, this.pageSize);
   },
   props: {
-    themeId: {
-      type: Number
-    }
+    themeId: {}
   },
   components: {
     Pagination
@@ -89,8 +88,9 @@ export default {
   data() {
     return {
       replyList: [],
+      lastThemeReply: "",
       pageSize: 20,
-      totalReply: 1000,
+      totalReply: 0,
       currentPage: 1
     };
   },
@@ -102,12 +102,64 @@ export default {
     getThemeReplyFromServer(themeId, page, pageSize) {
       getThemeReply(themeId, page, pageSize).then(data => {
         let result = data.data;
-        this.replyList = result.replyList;
+        this.replyList = result.themeReplyBOList;
         this.totalReply = result.totalReply;
+        this.lastThemeReply = result.lastThemeReply;
       });
+    },
+    memberUrl(id) {
+      return "/member/" + id;
+    },
+    ftime: function(timespan) {
+      return Ftime(timespan);
+    }
+  },
+  computed: {
+    isMultiPage() {
+      return this.totalReply / this.pageSize > 1;
+    },
+    isNoReply() {
+      return this.currentPage === 0;
     }
   }
 };
 </script>
 
-<style></style>
+<style>
+.thank_area {
+  display: inline-block;
+  line-height: 100%;
+  vertical-align: middle;
+}
+
+.no {
+  font-size: 9px;
+  line-height: 9px;
+  font-weight: 500;
+  border-radius: 10px;
+  display: inline-block;
+  background-color: #f0f0f0;
+  color: #ccc;
+  padding: 2px 5px;
+  cursor: pointer;
+}
+
+.reply_content {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #000;
+  word-break: break-word;
+}
+
+#no-comments-yet {
+  padding: 10px;
+  font-size: var(--box-font-size);
+  line-height: var(--box-line-height);
+  background-color: transparent;
+  border-radius: var(--box-border-radius);
+  box-shadow: none;
+  border: 2px dashed rgba(0, 0, 0, 0.15);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.15);
+}
+</style>

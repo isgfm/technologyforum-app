@@ -74,6 +74,10 @@ const frontdeskRouter = {
             components:{
                 main:ViewThemeMain,
                 right:ViewThemeRight
+            },
+            props:{
+                main:true,
+                right:false
             }
         },
     ]

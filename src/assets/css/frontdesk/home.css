@@ -21,6 +21,14 @@
     float: left;
 }
 
+h1 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 150%;
+    margin: 0 0 10px;
+    padding: 0;
+}
+
 a:active, a:link, a:visited {
     color: #778087;
     text-decoration: none;

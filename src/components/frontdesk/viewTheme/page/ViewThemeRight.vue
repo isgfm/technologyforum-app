@@ -4,8 +4,8 @@
     <template v-if="isLogIn">
       <profile-right/>
       <div class="sep20"></div>
-    <empty-right/>
     </template>
+    <empty-right/>
   </div>
 </template>
 

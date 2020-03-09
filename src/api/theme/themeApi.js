@@ -57,11 +57,8 @@ export function keepTheme(id){
 
 export function getTheme(id){
     return request({
-        url:'/theme',
-        method:'get',
-        params:{
-            id:id
-        }
+        url:'/theme/'+id,
+        method:'get'
     });
 }
 

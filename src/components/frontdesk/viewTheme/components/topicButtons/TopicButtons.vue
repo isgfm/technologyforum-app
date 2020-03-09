@@ -40,6 +40,22 @@ export default {
 </script>
 
 <style>
+.topic_buttons {
+    padding: 5px;
+    font-size: 14px;
+    line-height: 120%;
+    background: #eee;
+    background: -moz-linear-gradient(top,#eee 0,#ccc 100%);
+    background: -webkit-gradient(linear,left top,left bottom,color-stop(0,#eee),color-stop(100%,#ccc));
+    background: -webkit-linear-gradient(top,#eee 0,#ccc 100%);
+    background: -o-linear-gradient(top,#eee 0,#ccc 100%);
+    background: -ms-linear-gradient(top,#eee 0,#ccc 100%);
+    background: linear-gradient(to bottom,#eee 0,#ccc 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee',endColorstr='#cccccc',GradientType=0 );
+    border-radius: 0 0 3px 3px;
+    text-align: left;
+}
+
 .topic_stats {
     text-shadow: 0 1px 0 #fff;
     font-size: 11px;
