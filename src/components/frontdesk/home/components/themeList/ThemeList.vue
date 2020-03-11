@@ -19,11 +19,14 @@
              <strong>
                <a :href="userUrl(themeVO.themeOwner.nId)" v-text="themeVO.themeOwner.cUsername"></a>
              </strong>
-             &nbsp;•&nbsp;
+             <template v-if="themeVO.countReply>0">
+               &nbsp;•&nbsp;
              最后回复
              <strong>
                <span >{{ftime(themeVO.lastThemeReply.dReplyTime)}}</span>
              </strong>
+             </template>
+             
           </span>
         </div>
         <div class="col-1">

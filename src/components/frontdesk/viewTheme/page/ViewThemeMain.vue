@@ -42,7 +42,12 @@
       />
     </div>
     <div class="sep20"></div>
-      <ReplyList :themeId="themeId" />
+    <ReplyList :themeId="themeId" />
+    <div class="sep20"></div>
+    <!-- <template v-if="">
+
+    </template> -->
+    <ReplyBox/>
   </div>
 </template>
 
@@ -52,10 +57,12 @@ import TopicButtons from "@frontdesk/viewTheme/components/topicButtons/TopicButt
 import ReplyList from "@frontdesk/viewTheme/components/replyList/ReplyList";
 import { getTheme } from "@api/theme/themeApi";
 import { Message } from "element-ui";
+import ReplyBox from "../components/replyBox/ReplyBox"
 export default {
   components: {
     TopicButtons,
-    ReplyList
+    ReplyList,
+    ReplyBox
   },
   props: {
     themeId: {}

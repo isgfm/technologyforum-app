@@ -119,7 +119,7 @@ export default {
       return this.totalReply / this.pageSize > 1;
     },
     isNoReply() {
-      return this.currentPage === 0;
+      return this.totalReply === 0;
     }
   }
 };
