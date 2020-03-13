@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import {memberRouter} from '@/router/routerUrl'
 export default {
   name: "ProfileRight",
   computed: {
@@ -78,7 +79,7 @@ export default {
   },
   methods:{
     memberUrl(id){
-      return '/member/'+id;
+      return memberRouter(id);
     }
   }
 };

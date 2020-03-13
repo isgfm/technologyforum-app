@@ -37,7 +37,7 @@
                 <!-- <div class="thank_area">
               隐藏，感谢
             </div> -->
-                <a href="#;">
+                <a href="#" @click="replyOne(reply.themeReplyOwner.nId,reply.themeReplyOwner.cUsername)">
                   <img
                     :src="require('@/assets/img/reply_neue.png')"
                     align="absmiddle"
@@ -75,6 +75,7 @@
 import { Ftime } from "@util/themeUtil";
 import Pagination from "@common/pagination/Pagination";
 import { getThemeReply } from "@api/theme/themeReplyApi";
+import {memberRouter} from '@/router/routerUrl';
 export default {
   created() {
     this.getThemeReplyFromServer(this.themeId, this.currentPage, this.pageSize);
@@ -108,10 +109,13 @@ export default {
       });
     },
     memberUrl(id) {
-      return "/member/" + id;
+      return memberRouter(id);
     },
     ftime: function(timespan) {
       return Ftime(timespan);
+    },
+    replyOne:function(userId,username){
+      this.$store.dispatch("replyOne",{userId,username});
     }
   },
   computed: {

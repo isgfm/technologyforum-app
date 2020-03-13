@@ -38,18 +38,19 @@
 </template>
 
 <script>
-import {Ftime,getClassNameById} from '@util/themeUtil'
+import {Ftime,getClassNameById} from '@util/themeUtil';
+import {memberRouter,themeRouter,nodeRouter} from '@/router/routerUrl';
 export default {
   name: "HomeThemeList",
   methods:{
     userUrl:function(userId){
-      return "/member/"+userId;
+      return memberRouter(userId);
     },
     nodeUrl:function(router){
-      return "/go/"+router;
+      return nodeRouter(router);
     },
     themeUrl:function(themeId){
-      return '/t/'+themeId;
+      return themeRouter(themeId);
     },
     ftime:function(timespan){
       return Ftime(timespan);

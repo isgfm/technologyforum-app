@@ -23,6 +23,7 @@
 <script>
 import $ from 'jquery'
 import {offset,pageSize} from '@constant/themeConstant'
+import {nodeRouter,tabRouter} from '@/router/routerUrl';
 export default {
     name: "TabsNavigation",
     props:{
@@ -49,10 +50,10 @@ export default {
           this.$store.dispatch("getTabThemeList",{tabRouter,offset,pageSize});
         },
         tabUrl:function(url){
-          return "/tab/"+url;
+          return tabRouter(url);
         },
         nodeUrl:function(url){
-          return "/go/"+url;
+          return nodeRouter(url);
         },
         getThemeClass: function() {
       this.$store.dispatch("getThemeClassTabs").catch(error => {

@@ -108,6 +108,10 @@ a.tb:active, a.tb:link, a.tb:visited {
     color: #999;
 }
 
+.hidden-element{
+    display: none;
+}
+
 .item_node {
     font-size: 14px;
     line-height: 14px;

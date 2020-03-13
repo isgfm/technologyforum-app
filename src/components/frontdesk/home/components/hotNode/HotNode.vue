@@ -12,6 +12,7 @@
 <script>
 import {getHotNode} from '@api/theme/themeClassApi'
 import {hotNodeCount} from '@constant/themeConstant'
+import {nodeRouter} from '@/router/routerUrl';
 export default {
     name:'HotNode',
     created:function(){
@@ -24,7 +25,7 @@ export default {
     },
     methods:{
         nodeUrl:function(router){
-            return "#go/"+router;
+            return nodeRouter(router);
         },
         getHotNodeFromServer(){
             getHotNode(hotNodeCount).then(data=>{

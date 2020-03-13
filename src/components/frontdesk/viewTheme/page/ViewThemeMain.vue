@@ -13,7 +13,7 @@
               loading="lazy"
           /></router-link>
         </div>
-        <router-link :to="`/`">V2EX</router-link>
+        <router-link to="/">V2EX</router-link>
         <span class="chevron">&nbsp;›&nbsp;</span>
         <router-link :to="nodeUrl(theme.nThemeClass)">{{
           themeClassName
@@ -58,6 +58,7 @@ import ReplyList from "@frontdesk/viewTheme/components/replyList/ReplyList";
 import { getTheme } from "@api/theme/themeApi";
 import { Message } from "element-ui";
 import ReplyBox from "../components/replyBox/ReplyBox"
+import {memberRouter,nodeRouter} from '@/router/routerUrl';
 export default {
   components: {
     TopicButtons,
@@ -79,10 +80,10 @@ export default {
   },
   methods: {
     nodeUrl: function(router) {
-      return "/go/" + router;
+      return nodeRouter(router);
     },
     memberUrl(id) {
-      return "/member/" + id;
+      return memberRouter(id);
     },
     ftime: function(timespan) {
       return Ftime(timespan);
