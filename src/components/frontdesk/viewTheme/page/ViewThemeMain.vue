@@ -47,7 +47,7 @@
     <!-- <template v-if="">
 
     </template> -->
-    <ReplyBox/>
+    <ReplyBox :themeId="themeId"/>
   </div>
 </template>
 

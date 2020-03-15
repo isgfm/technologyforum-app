@@ -50,7 +50,7 @@ export function keepTheme(id){
         url:'/theme/kepp',
         method:'get',
         params:{
-            id:id
+            themeId:id
         }
     });
 }

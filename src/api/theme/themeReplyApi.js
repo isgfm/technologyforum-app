@@ -11,3 +11,14 @@ export function getThemeReply(themeId,page,pageSize){
         }
     });
 }
+
+export function reply(themeId,content){
+    const data = {
+        nThemeId:themeId,
+        cReplyContent:content
+    }
+    return request({
+        url:'/themereply/reply',
+        method:'post',
+    });
+}

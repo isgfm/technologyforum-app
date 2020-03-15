@@ -43,10 +43,13 @@ export function register(username,password,captcha) {
   })
 }
 
-export function getAllUser() {
+export function getUserListFromThemeReply(themeId) {
   return request({
-    url: '/user/allUser',
-    method: 'get'
+    url: '/user/users/themereply',
+    method: 'get',
+    params:{
+      themeId:themeId
+    }
   })
 }
 

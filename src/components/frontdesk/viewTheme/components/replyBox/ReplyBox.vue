@@ -19,7 +19,7 @@
       添加一条新回复
     </div>
     <div class="cell">
-      <vue-tribute :options="tributeOptions">
+      <!-- <vue-tribute :options="tributeOptions">
         <textarea
           name="content"
           maxlength="10000"
@@ -27,13 +27,19 @@
           id="reply_content"
           style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 112px;"
         ></textarea>
-      </vue-tribute>
+      </vue-tribute> -->
+      <CKEditor :value.sync="replyContent" :themeId="themeId" />
       <div class="sep10"></div>
       <div class="fr">
         <div class="sep5"></div>
         <span class="gray">请尽量让自己的回复能够对别人有帮助</span>
       </div>
-      <input type="submit" value="回复" class="super normal button" />
+      <input
+        type="botton"
+        @click="submiRreply"
+        value="回复"
+        class="super normal button"
+      />
     </div>
     <div class="inner">
       <div class="fr"><router-link to="/">← V2EX</router-link></div>
@@ -45,33 +51,35 @@
 <script>
 import $ from "jquery";
 import VueTribute from "vue-tribute";
+import ReplyTinymceEditor from "@components/common/editor/ReplyTinymceEditor";
+import CKEditor from "@components/common/editor/CKEditor";
+import { reply } from "@api/theme/themeReplyApi";
+import { Message } from "element-ui";
 export default {
+  props: {
+    themeId: {}
+  },
   data() {
     return {
-      tributeOptions: {
-        trigger: "@",
-        selectClass: "highlight",
-        iframe: null,
-        menuItemTemplate: function(item) {
-          return item.string;
-        },
-        noMatchTemplate: function() {
-          return '<span style:"visibility: hidden;"></span>';
-        },
-        menuContainer: document.body,
-        lookup: "key",
-        positionMenu: true,
-        values: [
-          { key: "Phil Heartman", value: "pheartman" },
-          { key: "Gordon Ramsey", value: "gramsey" }
-        ]
-      }
+      replyContent: ""
     };
   },
   components: {
-    VueTribute
+    CKEditor
   },
   methods: {
+    submiRreply() {
+      if (this.replyContent === "") {
+        Message({
+          type: "warning",
+          showClose: true,
+          message: "请输入回复内容"
+        });
+      } else{
+          reply(this.themeId, this.replyContent);
+          this.replyContent = '';
+      }
+    },
     backToTop() {
       var doc = document.documentElement;
       $(doc).animate(
@@ -89,7 +97,7 @@ export default {
     isSticky() {
       return this.$store.state.themeReplyStore.isSticky;
     },
-    replyContent() {
+    replyContent2() {
       return this.$store.state.themeReplyStore.replyContent;
     }
   }
@@ -125,8 +133,8 @@ export default {
   outline: 0;
 }
 
-ul li{
-list-style-type:none;
+ul li {
+  list-style-type: none;
 }
 
 .mll {
@@ -142,9 +150,5 @@ list-style-type:none;
     microsoft yahei, sans-serif;
   resize: vertical;
   box-sizing: border-box;
-}
-
-.highlight {
-  background: #ddd;
 }
 </style>
