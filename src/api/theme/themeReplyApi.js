@@ -20,5 +20,6 @@ export function reply(themeId,content){
     return request({
         url:'/themereply/reply',
         method:'post',
+        data
     });
 }

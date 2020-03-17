@@ -60,8 +60,7 @@
               &nbsp; &nbsp;
               <span class="ago">{{ ftime(reply.themeReply.dReplyTime) }}</span>
               <div class="sep5"></div>
-              <div class="reply_content">
-                {{ reply.themeReply.cReplyContent }}
+              <div class="reply_content" v-html="reply.themeReply.cReplyContent">
               </div>
             </div>
           </div>

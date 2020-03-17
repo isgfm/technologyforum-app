@@ -35,7 +35,7 @@
         <span class="gray">请尽量让自己的回复能够对别人有帮助</span>
       </div>
       <input
-        type="botton"
+        type="submit"
         @click="submiRreply"
         value="回复"
         class="super normal button"
@@ -76,8 +76,12 @@ export default {
           message: "请输入回复内容"
         });
       } else{
-          reply(this.themeId, this.replyContent);
-          this.replyContent = '';
+          reply(this.themeId, this.replyContent).then(data=>{
+              this.replyContent = '';
+          }).catch(error=>{
+              console.log(error);
+          })
+          
       }
     },
     backToTop() {
@@ -100,6 +104,16 @@ export default {
     replyContent2() {
       return this.$store.state.themeReplyStore.replyContent;
     }
+  },
+  watch: {
+    //     'replyContent' :{
+    //       handler(newVal,oldVal){
+    // console.log("旧值"+oldVal);
+    //       console.log("新值"+newVal);
+    //       },
+    //       deep: true,
+    //       immediate: true
+    //     }
   }
 };
 </script>

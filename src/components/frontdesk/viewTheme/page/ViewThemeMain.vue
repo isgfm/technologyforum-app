@@ -30,8 +30,7 @@
       </div>
       <div class="cell">
         <div class="topic_content">
-          <div class="markdown_body">
-            {{ theme.cThemeContent }}
+          <div class="markdown_body" v-html="theme.cThemeContent">
           </div>
         </div>
       </div>
