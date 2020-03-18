@@ -128,24 +128,7 @@ export default {
   bottom: -2px;
   top: -2px;
 }
-.normal.button {
-  background-color: #fff;
-  color: #333;
-  text-shadow: 0 1px 0 #fff;
-  text-decoration: none;
-  font-weight: 700;
-  box-shadow: 0 1px 0 rgba(66, 66, 77, 0.1);
-}
 
-.super.button {
-  background-image: url("~@/assets/img/bg_blended_light.png");
-  padding: 4px 8px;
-  border: 1px solid rgba(80, 80, 90, 0.2);
-  border-bottom-color: rgba(80, 80, 90, 0.35);
-  border-radius: 3px;
-  font-size: 14px;
-  outline: 0;
-}
 
 ul li {
   list-style-type: none;

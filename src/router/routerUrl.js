@@ -13,3 +13,5 @@ export function tabRouter(router){
 export function themeRouter(themeId){
     return "/t/" + themeId;
 }
+
+export const newThemeRouter = "/new";

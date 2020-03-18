@@ -29,9 +29,5 @@ export default {
 </script>
 <style src="@/assets/css/frontdesk/home.css"></style>
 <style scoped>
-.content {
-  min-width: 600px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
+
 </style>

@@ -1,22 +1,22 @@
 import request from '@/request/index'
 
-export function getThemeListByTabId(tabRouter,offset,pageSize){
+export function getThemeListByTabRouter(tabRouter,page,pageSize){
     return request({
         url:'/theme/themelist/tab/'+tabRouter,
         method:'get',
         params:{
-            offset:offset,
+            page:page,
             pageSize:pageSize
         }
     });
 }
 
-export function getThemeListByNodeId(nodeId,offset,pageSize){
+export function getThemeListByNodeRouter(nodeRouter,page,pageSize){
     return request({
-        url:'/theme/themelist/node/'+nodeId,
+        url:'/theme/themelist/node/'+nodeRouter,
         method:'get',
         params:{
-            offset:offset,
+            page:page,
             pageSize:pageSize
         }
     });

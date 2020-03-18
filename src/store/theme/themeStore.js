@@ -1,4 +1,4 @@
-import{getThemeListByTabId,getThemeListByNodeId} from '@api/theme/themeApi'
+import{getThemeListByTabRouter,getThemeListByNodeRouter} from '@api/theme/themeApi'
 import * as R from 'ramda'
 
 const themeStore={
@@ -11,9 +11,9 @@ const themeStore={
         }
     },
     actions:{
-        getTabThemeList({commit},{tabRouter,offset,pageSize}){
+        getTabThemeList({commit},{tabRouter,page,pageSize}){
             return new Promise((resolve,reject)=>{
-                getThemeListByTabId(tabRouter,offset,pageSize).then(data=>{
+                getThemeListByTabRouter(tabRouter,page,pageSize).then(data=>{
                     let result = data;
                     if(!R.isEmpty(result)){
                         commit('setThemeList',result.data);
@@ -24,9 +24,9 @@ const themeStore={
                 });
             })
         },
-        getNodeThemeList({commit},{nodeId,offset,pageSize}){
+        getNodeThemeList({commit},{nodeRouter,page,pageSize}){
             return new Promise((resolve,reject)=>{
-                getThemeListByNodeId(nodeId,offset,pageSize).then(data=>{
+                getThemeListByNodeRouter(nodeRouter,page,pageSize).then(data=>{
                     let result = data;
                     if(!R.isEmpty(result)){
                         commit('setThemeList',result.data);

@@ -9,6 +9,8 @@ import CreateThemeMain from '@frontdesk/createTheme/page/CreateThemeMain'
 import CreateThemeRight from '@frontdesk/createTheme/page/CreateThemeRight'
 import ViewThemeMain from "@frontdesk/viewTheme/page/ViewThemeMain";
 import ViewThemeRight from "@frontdesk/viewTheme/page/ViewThemeRight";
+import NodeThemeListMain from "@frontdesk/nodeThemeList/page/NodeThemeListMain"
+import NodeThemeListRight from "@frontdesk/nodeThemeList/page/NodeThemeListRight"
 const frontdeskRouter = {
     path:'',
     name:'FrontdeskHome',
@@ -80,6 +82,17 @@ const frontdeskRouter = {
                 right:false
             }
         },
+        {
+            path:'/go/:nodeRouter',
+            components:{
+                main:NodeThemeListMain,
+                right:NodeThemeListRight
+            },
+            props:{
+                main:true,
+                right:false
+            }
+        }
     ]
 };
 

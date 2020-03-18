@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import {Ftime,getClassNameById} from '@util/themeUtil';
+import {Ftime} from '@util/themeUtil';
 import {memberRouter,themeRouter,nodeRouter} from '@/router/routerUrl';
 export default {
   name: "HomeThemeList",
@@ -54,9 +54,6 @@ export default {
     },
     ftime:function(timespan){
       return Ftime(timespan);
-    },
-    getClassName:function(classId){
-      return getClassNameById(this.$store.state.themeClassStore.themeClass_nodes,classId);
     }
   },
   computed:{

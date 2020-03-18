@@ -36,7 +36,7 @@ export function getNodeByDepth(depth){
 
 export function getNodesByTabRouter(tabRouter){
     return request({
-        url:'/themeclass/node',
+        url:'/themeclass/nodelist',
         method:'get',
         params:{
             tabRouter:tabRouter
@@ -53,3 +53,14 @@ export function getHotNode(limit){
         }
     });
 }
+
+export function getNodeByNodeRouter(nodeRouter){
+    return request({
+        url:'/themeclass/node',
+        method:'get',
+        params:{
+            nodeRouter:nodeRouter
+        }
+    });
+}
+

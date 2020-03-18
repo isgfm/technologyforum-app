@@ -22,7 +22,7 @@
 
 <script>
 import $ from 'jquery'
-import {offset,pageSize} from '@constant/themeConstant'
+import {pageSize} from '@constant/themeConstant'
 import {nodeRouter,tabRouter} from '@/router/routerUrl';
 export default {
     name: "TabsNavigation",
@@ -43,11 +43,11 @@ export default {
     },
     methods:{
         changeSecondaryTab:function(){
-          
+          let page = 1;
           let tabRouter = $(event.target).attr("data-tabRouter");
           this.$store.dispatch("setActiveTab",tabRouter);
           this.$store.dispatch("getNodes",tabRouter);
-          this.$store.dispatch("getTabThemeList",{tabRouter,offset,pageSize});
+          this.$store.dispatch("getTabThemeList",{tabRouter,page,pageSize});
         },
         tabUrl:function(url){
           return tabRouter(url);

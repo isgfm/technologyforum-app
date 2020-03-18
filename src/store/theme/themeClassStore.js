@@ -1,6 +1,6 @@
 import{getHomeThemeClass,getThemeClassTabs,getNodesByTabRouter} from '@api/theme/themeClassApi'
 import * as R from 'ramda'
-import {offset,pageSize} from '@constant/themeConstant'
+import {page,pageSize} from '@constant/themeConstant'
 const themeClassStore={
     state:{
         themeClass_tabs:[],
@@ -54,7 +54,7 @@ const themeClassStore={
                         context.commit('setActiveTab',tabRouter);
                     }
                     context.dispatch('getNodes', tabRouter) ;
-                    context.dispatch('getTabThemeList', {tabRouter,offset,pageSize}) ;
+                    context.dispatch('getTabThemeList', {tabRouter,page,pageSize}) ;
                     resolve();
                 }).catch(error=>{
                     reject(error);
