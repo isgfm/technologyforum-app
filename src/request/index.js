@@ -46,6 +46,15 @@ service.interceptors.response.use(
         return Promise.reject("error");
       }
 
+      if (res.code === 20004) {
+        Message({
+          type: "error",
+          showClose: true,
+          message: res.message
+        });
+        return Promise.reject("error");
+      }
+
       if (res.code === 50002) {
         Message({
           type: "warning",

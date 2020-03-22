@@ -1,5 +1,5 @@
 <template>
-  <div class="node_header">
+  <div v-title :data-title="nodeRouterVO.themeClass.cName" class="node_header">
     <div class="node_avatar">
       <div
         style="float: left; display: inline-block; margin-right: 10px; margin-bottom: initial!important;"

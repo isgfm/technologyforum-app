@@ -23,7 +23,11 @@
           <router-link to="/login">登录</router-link>
         </template>
           <template v-else>
-            <a href="/" v-text="username" class="top"></a>
+            <router-link to="/">首页</router-link>
+          &nbsp;&nbsp;&nbsp;
+            <router-link :to="memberUrl(userId)" v-text="username" class="top"></router-link>
+            &nbsp;&nbsp;&nbsp;
+            <router-link to="/setting" class="top">设置</router-link>
             &nbsp;&nbsp;&nbsp;
             <a href="#" @click="logout" class="top">登出</a>
           </template>
@@ -35,7 +39,7 @@
 
 <script>
 import FrontdeskSearch from '@frontdesk/common/search/FrontdeskSearch'
-
+import {memberRouter} from '@/router/routerUrl'
 export default {
   name:'FrontdeskHeader',
   components:{
@@ -47,6 +51,9 @@ export default {
     },
     username(){
       return this.$store.state.userStore.user.cUsername;
+    },
+    userId:function(){
+      return this.$store.state.userStore.user.nId;
     }
   },
   methods:{
@@ -59,6 +66,9 @@ logout(){
             that.$message({message: error, type: 'error', showClose: true});
           }
         })
+    },
+    memberUrl(userId){
+      return memberRouter(userId);
     }
   }
 }

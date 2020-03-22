@@ -9,8 +9,8 @@ import CreateThemeMain from '@frontdesk/createTheme/page/CreateThemeMain'
 import CreateThemeRight from '@frontdesk/createTheme/page/CreateThemeRight'
 import ViewThemeMain from "@frontdesk/viewTheme/page/ViewThemeMain";
 import ViewThemeRight from "@frontdesk/viewTheme/page/ViewThemeRight";
-import NodeThemeListMain from "@frontdesk/nodeThemeList/page/NodeThemeListMain"
-import NodeThemeListRight from "@frontdesk/nodeThemeList/page/NodeThemeListRight"
+import ProfileSettingMain from "@frontdesk/profileSetting/page/ProfileSettingMain"
+import ProfileSettingRight from "@frontdesk/profileSetting/page/ProfileSettingRight"
 const frontdeskRouter = {
     path:'',
     name:'FrontdeskHome',
@@ -85,12 +85,23 @@ const frontdeskRouter = {
         {
             path:'/go/:nodeRouter',
             components:{
-                main:NodeThemeListMain,
-                right:NodeThemeListRight
+                main:r => require.ensure([], () => r(require('@frontdesk/nodeThemeList/page/NodeThemeListMain')), 'NodeThemeListMain'),
+                right:r => require.ensure([], () => r(require('@frontdesk/nodeThemeList/page/NodeThemeListRight')), 'NodeThemeListRight')
             },
             props:{
                 main:true,
                 right:false
+            }
+        },
+        {
+            path:'/setting',
+            components:{
+                main:ProfileSettingMain,
+                right:ProfileSettingRight
+            },
+            meta:{
+                title:'设置>个人资料',
+                requireLogin: true
             }
         }
     ]

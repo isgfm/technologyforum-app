@@ -59,3 +59,11 @@ export function getUsersByPageAndSize(pageIndex, pageSize) {
     method: 'get'
   })
 }
+
+export function saveProfile(data) {
+  return request({
+    url: '/user/profile/save',
+    method: 'post',
+    data
+  })
+}
