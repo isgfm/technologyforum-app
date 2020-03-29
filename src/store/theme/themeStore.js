@@ -3,15 +3,20 @@ import * as R from 'ramda'
 
 const themeStore={
     state:{
-        themeList:[]
+        themeList:[],
+        tabRouter:''
     },
     mutations:{
         setThemeList(state,themeList){
             state.themeList = themeList;
+        },
+        setTabRouter(state,tabRouter){
+            state.tabRouter = tabRouter;
         }
     },
     actions:{
         getTabThemeList({commit},{tabRouter,page,pageSize}){
+            commit('setTabRouter',tabRouter);
             return new Promise((resolve,reject)=>{
                 getThemeListByTabRouter(tabRouter,page,pageSize).then(data=>{
                     let result = data;

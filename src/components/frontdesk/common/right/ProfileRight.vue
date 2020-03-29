@@ -1,51 +1,51 @@
 <template>
   <div class="box">
     <div class="cell">
-      <div class="row">
-        <div class="col-2">
+      <div class="row no-gutters">
+        <div class="col-3">
           <router-link :to="memberUrl(id)">
             <img :src="avatar" />
           </router-link>
         </div>
         <div class="col-1"></div>
         <div>
-          <span class="bigger">
+          <div class="bigger mx-auto">
             <router-link :to="memberUrl(id)">{{ username }}</router-link>
-          </span>
+          </div>
         </div>
       </div>
       <div class="sep3"></div>
-      <div class="row">
+      <div class="row no-gutters">
         <div class="col-4">
-          <a href="/my/nodes" class="dark text-center" style="display:block;">
+          <router-link to="/my/nodes" class="dark text-center" style="display:block;">
             <span class="bigger">1</span>
             <div class="sep3"></div>
             <span class="gray">节点收藏</span>
-          </a>
+          </router-link>
         </div>
         <div
           class="col-4"
           style="border-left: 1px solid rgba(100, 100, 100, 0.4); border-right: 1px solid rgba(100, 100, 100, 0.4);"
         >
-          <a href="/my/topics" class="dark text-center" style="display:block;">
+          <router-link to="/my/topics" class="dark text-center" style="display:block;">
             <span class="bigger">2</span>
             <div class="sep3"></div>
             <span class="gray">主题收藏</span>
-          </a>
+          </router-link>
         </div>
         <div
           class="col-4"
         >
-          <a href="/my/following" class="dark text-center" style="display:block;">
+          <router-link to="/my/following" class="dark text-center" style="display:block;">
             <span class="bigger">3</span>
             <div class="sep3"></div>
             <span class="gray">特别关注</span>
-          </a>
+          </router-link>
         </div>
       </div>
     </div>
     <div class="cell">
-      <div class="row">
+      <div class="row no-gutters">
         <div class="col-2">
           <router-link to="/new">
             <img :src="require('@/assets/img/compose.png')" width="28px"/>

@@ -26,7 +26,7 @@
           v-for="(reply, index) in replyList"
           v-bind:key="reply.nId"
         >
-          <div class="row">
+          <div class="row no-gutters">
             <div class="col-1">
               <router-link :to="memberUrl(reply.themeReplyOwner.nId)">
                 <img :src="reply.themeReplyOwner.cAvatar" class="avatar" />
@@ -60,7 +60,9 @@
               &nbsp; &nbsp;
               <span class="ago">{{ ftime(reply.themeReply.dReplyTime) }}</span>
               <div class="sep5"></div>
-              <div class="reply_content" v-html="reply.themeReply.cReplyContent">
+              <div class="reply_content">
+                <v-runtime-template :template="reply.themeReply.cReplyContent"></v-runtime-template>
+                
               </div>
             </div>
           </div>
@@ -75,6 +77,8 @@ import { Ftime } from "@util/themeUtil";
 import Pagination from "@common/pagination/Pagination";
 import { getThemeReply } from "@api/theme/themeReplyApi";
 import {memberRouter} from '@/router/routerUrl';
+// import ReplyContent from '../replyContent/ReplyContent'
+import VRuntimeTemplate from "v-runtime-template";
 export default {
   created() {
     this.getThemeReplyFromServer(this.themeId, this.currentPage, this.pageSize);
@@ -83,7 +87,8 @@ export default {
     themeId: {}
   },
   components: {
-    Pagination
+    Pagination,
+    VRuntimeTemplate
   },
   data() {
     return {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <template v-if="isNoTheme">
+    <template v-if="isNoReply">
       <div id="no-comments-yet">
         目前尚无主题
       </div>
@@ -9,24 +9,18 @@
       <template v-if="isMultiPage">
         <Pagination
           :pageSize="pageSize"
-          :total="nodeThemeCount"
+          :total="totalReply"
           :currentPage="currentPage"
           @currentChange="currentChange"
         />
       </template>
       <div
         class="cell item"
-        v-for="themeVO in themeVOList"
+        v-for="themeVO in themeList"
         v-bind:key="themeVO.nId"
       >
-        <div class="row">
-          <div class="col-1">
-            <router-link :to="userUrl(themeVO.themeOwner.nId)">
-              <img :src="themeVO.themeOwner.cAvatar" class="avatar" />
-            </router-link>
-          </div>
-
-          <div class="col-10">
+        <div class="row no-gutters">
+          <div class="col-11">
             <span class="item_title">
               <router-link
                 :to="themeUrl(themeVO.theme.nId)"
@@ -36,11 +30,22 @@
             </span>
             <div class="sep5"></div>
             <span class="topic_info">
+              <router-link
+                class="node"
+                :to="nodeUrl(themeVO.theme.nThemeClass)"
+                v-text="themeVO.themeClassName"
+              ></router-link>
+              &nbsp;•&nbsp;
               <strong>
-                <a
-                  :href="userUrl(themeVO.themeOwner.nId)"
+                <router-link
+                  :to="memberUrl(themeVO.themeOwner.nId)"
                   v-text="themeVO.themeOwner.cUsername"
-                ></a>
+                ></router-link>
+              </strong>
+              &nbsp;•&nbsp;
+              创建于
+<strong>
+                <span>{{ ftime(themeVO.theme.dCreateTime) }}</span>
               </strong>
               <template v-if="themeVO.countReply > 0">
                 &nbsp;•&nbsp; 最后回复
@@ -66,24 +71,27 @@
 <script>
 import { Ftime } from "@util/themeUtil";
 import Pagination from "@common/pagination/Pagination";
+import { getThemeListByUserId } from "@api/theme/themeApi";
 import { memberRouter, themeRouter, nodeRouter } from "@/router/routerUrl";
-import { getThemeListByNodeRouter } from "@api/theme/themeApi";
 export default {
   created() {
-    this.getThemeVOListFromServer(
-      this.nodeRouter,
+    this.getThemeListFromServer(
+      this.$route.params.userId,
       this.currentPage,
       this.pageSize
     );
   },
   props: {
-    nodeRouter: {}
+    userId: {}
+  },
+  components: {
+    Pagination
   },
   data() {
     return {
-      themeVOList: [],
+      themeList: [],
       pageSize: 20,
-      nodeThemeCount: 0,
+      totalReply: 0,
       currentPage: 1
     };
   },
@@ -91,35 +99,72 @@ export default {
     currentChange(newPage) {
       this.currentPage = newPage;
     },
-    getThemeVOListFromServer(nodeRouter, page, pageSize) {
-      getThemeListByNodeRouter(nodeRouter, page, pageSize).then(data => {
+    getThemeListFromServer(themeId, page, pageSize) {
+      getThemeListByUserId(themeId, page, pageSize).then(data => {
         let result = data.data;
-        this.themeVOList = result.themeVOList;
-        this.nodeThemeCount = result.themeCount;
+        this.themeList = result.themeVOList;
+        this.totalReply = result.themeCount;
       });
     },
-    userUrl: function(userId) {
-      return memberRouter(userId);
+    memberUrl(id) {
+      return memberRouter(id);
+    },
+    ftime: function(timespan) {
+      return Ftime(timespan);
     },
     nodeUrl: function(router) {
       return nodeRouter(router);
     },
     themeUrl: function(themeId) {
       return themeRouter(themeId);
-    },
-    ftime: function(timespan) {
-      return Ftime(timespan);
     }
   },
   computed: {
     isMultiPage() {
-      return this.nodeThemeCount / this.pageSize > 1;
+      return this.totalReply / this.pageSize > 1;
     },
-    isNoTheme() {
-      return this.nodeThemeCount === 0;
+    isNoReply() {
+      return this.totalReply === 0;
     }
   }
 };
 </script>
 
-<style></style>
+<style>
+.thank_area {
+  display: inline-block;
+  line-height: 100%;
+  vertical-align: middle;
+}
+
+.no {
+  font-size: 9px;
+  line-height: 9px;
+  font-weight: 500;
+  border-radius: 10px;
+  display: inline-block;
+  background-color: #f0f0f0;
+  color: #ccc;
+  padding: 2px 5px;
+  cursor: pointer;
+}
+
+.reply_content {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #000;
+  word-break: break-word;
+}
+
+#no-comments-yet {
+  padding: 10px;
+  font-size: var(--box-font-size);
+  line-height: var(--box-line-height);
+  background-color: transparent;
+  border-radius: var(--box-border-radius);
+  box-shadow: none;
+  border: 2px dashed rgba(0, 0, 0, 0.15);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  color: rgba(0, 0, 0, 0.15);
+}
+</style>

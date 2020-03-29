@@ -103,6 +103,27 @@ const frontdeskRouter = {
                 title:'设置>个人资料',
                 requireLogin: true
             }
+        },
+        {
+            path:'/member/:userId',
+            components:{
+                main:r => require.ensure([], () => r(require('@frontdesk/member/page/MemberMain')), 'MemberMain'),
+                right:r => require.ensure([], () => r(require('@frontdesk/member/page/MemberRight')), 'MemberRight')
+            },
+            props:{
+                main:true,
+                right:false
+            },
+            children:[
+                {
+                    path:'',
+                    component:r => require.ensure([], () => r(require('@frontdesk/member/components/memberThemes/MemberThemes')), 'MemberThemes')
+                },
+                {
+                    path:'profile',
+                    component:r => require.ensure([], () => r(require('@frontdesk/member/components/memberProfile/MemberProfile')), 'MemberProfile')
+                }
+            ]
         }
     ]
 };

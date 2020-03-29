@@ -1,11 +1,13 @@
 const path = require('path');
 const CKEditorWebpackPlugin = require( '@ckeditor/ckeditor5-dev-webpack-plugin' );
 const { styles } = require( '@ckeditor/ckeditor5-dev-utils' );
+const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 function resolve (dir) {
   return path.join(__dirname, dir)
 }
 
 module.exports = {
+  runtimeCompiler: true,
     devServer: {
       proxy: {
         '/api':{
@@ -23,7 +25,8 @@ module.exports = {
       plugins: [
         new CKEditorWebpackPlugin( {
             language: 'zh-cn'
-        } )
+        } ),
+        new VuetifyLoaderPlugin()
     ]
     },
     chainWebpack: (config)=>{

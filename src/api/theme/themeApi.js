@@ -62,3 +62,13 @@ export function getTheme(id){
     });
 }
 
+export function getThemeListByUserId(userId,page,pageSize){
+    return request({
+        url:'/theme/userthemes/'+userId,
+        method:'get',
+        params:{
+            page:page,
+            pageSize:pageSize
+        }
+    });
+}

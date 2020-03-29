@@ -67,3 +67,10 @@ export function saveProfile(data) {
     data
   })
 }
+
+export function getUserByUserId(userId) {
+  return request({
+    url: '/user/'+userId,
+    method: 'get'
+  })
+}

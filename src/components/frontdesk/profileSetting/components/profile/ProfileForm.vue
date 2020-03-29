@@ -6,11 +6,13 @@
     label-width="155px"
     size="mini"
   >
+
   <el-form-item>
       <el-col :span="10">
         <span> V2EX第{{ user != null ? user.nId : "数据未加载" }}位会员 </span>
       </el-col>
     </el-form-item>
+    
     <el-form-item label="用户名">
       <el-col :span="12">
         <span>{{ user != null ? user.cUsername : "" }}</span>
