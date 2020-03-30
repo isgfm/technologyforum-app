@@ -11,7 +11,7 @@
             readonly
             outlined
             dense
-            :value="user.nSex"
+            :value="user.nSex==1?'男':'女'"
           ></v-text-field>
       </div>
   </div>
