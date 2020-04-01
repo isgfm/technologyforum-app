@@ -74,3 +74,10 @@ export function getUserByUserId(userId) {
     method: 'get'
   })
 }
+
+export function getUserStateCountByUserId(userId) {
+  return request({
+    url: '/user/statecount/'+userId,
+    method: 'get'
+  })
+}

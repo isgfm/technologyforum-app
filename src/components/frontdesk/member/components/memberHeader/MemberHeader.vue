@@ -8,8 +8,8 @@
         <div class="col-10">
           <div class="fr">
             <template v-if="isLogIn">
-              <el-button type="info" round>加入特别关注</el-button>
-              <el-button type="danger" round>Block</el-button>
+              <el-button type="info" @click="" round>加入特别关注</el-button>
+              <!-- <el-button type="danger" @click="" round>Block</el-button> -->
             </template>
           </div>
           <h1 style="margin-bottom: 5px;">{{ user.cUsername }}</h1>
@@ -25,6 +25,7 @@
 
 <script>
 import { getUserByUserId } from "@api/user/user";
+import {attentionUser,cancleAttentionUser} from '@api/keep/keepApi'
 export default {
   props: {
     userId: {}
@@ -42,6 +43,9 @@ export default {
       getUserByUserId(userId).then(data => {
         this.user = data.data;
       });
+    },
+    attention(userId){
+
     }
   },
   computed: {
