@@ -32,10 +32,12 @@ export default {
   },
   created() {
     this.getUserByUserIdFromServer(this.$route.params.userId);
+    
   },
   data() {
     return {
-      user: ""
+      user: "",
+      attention:false
     };
   },
   methods: {
