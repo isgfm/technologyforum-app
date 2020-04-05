@@ -19,7 +19,7 @@
         v-for="themeVO in themeVOList"
         v-bind:key="themeVO.nId"
       >
-        <div class="row">
+        <div class="row no-gutters">
           <div class="col-1">
             <router-link :to="userUrl(themeVO.themeOwner.nId)">
               <img :src="themeVO.themeOwner.cAvatar" class="avatar" />

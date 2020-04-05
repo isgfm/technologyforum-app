@@ -83,8 +83,8 @@ export default {
   },
   data() {
     return {
-      keepNodeCount: 0,
-      keepThemeCount: 0,
+      // keepNodeCount: 0,
+      // keepThemeCount: 0,
       attentionCount: 0,
       notifyCount: 0
     };
@@ -98,6 +98,12 @@ export default {
     },
     id: function() {
       return this.$store.state.userStore.user.nId;
+    },
+    keepNodeCount:function(){
+      return this.$store.state.keepStore.keepNodeCount;
+    },
+    keepThemeCount:function(){
+      return this.$store.state.keepStore.keepThemeCount;
     }
   },
   methods: {
@@ -107,6 +113,14 @@ export default {
     getUserStateCountByUserIdFromServer(userId) {
       getUserStateCountByUserId(userId).then(data => {
         let result = data.data;
+        // this.keepNodeCount = result.keepNodeCount;
+        // this.keepThemeCount = result.keepThemeCount;
+        this.attentionCount = result.attentionCount;
+        this.notifyCount = result.notifyCount;
+        this.$store.dispatch('addKeepNodeCount',result.keepNodeCount);
+        this.$store.dispatch('addKeepThemeCount',result.keepThemeCount);
+      }).catch(error=>{
+
       });
     }
   }

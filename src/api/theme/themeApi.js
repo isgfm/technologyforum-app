@@ -45,16 +45,6 @@ export function publishTheme(themeForm){
     });
 }
 
-export function keepTheme(id){
-    return request({
-        url:'/theme/kepp',
-        method:'get',
-        params:{
-            themeId:id
-        }
-    });
-}
-
 export function getTheme(id){
     return request({
         url:'/theme/'+id,

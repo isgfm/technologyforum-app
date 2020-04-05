@@ -1,14 +1,14 @@
 <template>
-  <div class="box">
+  <div class="box" v-title :data-title="user.cUsername">
     <div class="cell">
       <div class="row no-gutters">
         <div class="col-2">
-          <img :src="user.cAvatar"/>
+          <img :src="user.cAvatar" />
         </div>
         <div class="col-10">
           <div class="fr">
-            <template v-if="isLogIn">
-              <el-button type="info" @click="" round>加入特别关注</el-button>
+            <template v-if="loginUser != null && loginUser.nId != userId">
+              <AttentionBtn :userId="userId" />
               <!-- <el-button type="danger" @click="" round>Block</el-button> -->
             </template>
           </div>
@@ -25,19 +25,20 @@
 
 <script>
 import { getUserByUserId } from "@api/user/user";
-import {attentionUser,cancleAttentionUser} from '@api/keep/keepApi'
+import AttentionBtn from "../attentionBtn/AttentionBtn";
 export default {
+  components: {
+    AttentionBtn
+  },
   props: {
     userId: {}
   },
   created() {
-    this.getUserByUserIdFromServer(this.$route.params.userId);
-    
+    this.getUserByUserIdFromServer(this.userId);
   },
   data() {
     return {
-      user: "",
-      attention:false
+      user: ""
     };
   },
   methods: {
@@ -45,14 +46,11 @@ export default {
       getUserByUserId(userId).then(data => {
         this.user = data.data;
       });
-    },
-    attention(userId){
-
     }
   },
   computed: {
-    isLogIn() {
-      return this.$store.state.userStore.user != null;
+    loginUser() {
+      return this.$store.state.userStore.user;
     }
   }
 };

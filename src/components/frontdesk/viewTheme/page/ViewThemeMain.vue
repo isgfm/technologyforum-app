@@ -36,17 +36,16 @@
       </div>
       <TopicButtons
         :click="theme.nClick"
-        :keepCount="theme.nKeepCount"
-        :themeId="theme.nId"
+        :keepCount="themeKeepCount"
+        :themeId="themeId"
       />
     </div>
     <div class="sep20"></div>
     <ReplyList :themeId="themeId" />
     <div class="sep20"></div>
-    <!-- <template v-if="">
-
-    </template> -->
-    <ReplyBox :themeId="themeId"/>
+    <template v-if="loginUser!=null">
+      <ReplyBox :themeId="themeId"/>
+    </template>
   </div>
 </template>
 
@@ -74,7 +73,8 @@ export default {
     return {
       theme: "",
       themeOwner: "",
-      themeClassName: ""
+      themeClassName: "",
+      themeKeepCount:0
     };
   },
   methods: {
@@ -93,6 +93,7 @@ export default {
           this.theme = data.data.theme;
           this.themeOwner = data.data.themeOwner;
           this.themeClassName = data.data.themeClassName;
+          this.themeKeepCount = data.data.keepCount;
         })
         .catch(error => {
           this.$message({
@@ -101,6 +102,11 @@ export default {
             showClose: true
           });
         });
+    }
+  },
+  computed:{
+    loginUser() {
+      return this.$store.state.userStore.user;
     }
   }
 };

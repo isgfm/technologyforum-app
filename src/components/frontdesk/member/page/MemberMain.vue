@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MemberHeader />
+    <MemberHeader :userId="userId"/>
     <div class="sep20"></div>
     <div class="box">
       <div class="cell_tabs">

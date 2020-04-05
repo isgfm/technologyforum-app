@@ -5,15 +5,15 @@
       </div>
       <div class="cell">
           <div>
-              <div class="row no-gutters justify-content-center">
+              <div class="row justify-content-center">
                   <span class="gray col-4 text-right">注册会员</span>
                   <strong class="col-4">{{registerNumber}}</strong>
               </div>
-              <div class="row no-gutters justify-content-center">
+              <div class="row justify-content-center">
                   <span class="gray col-4 text-right">主题</span>
                   <strong class="col-4">{{themeNumber}}</strong>
               </div>
-              <div class="row no-gutters justify-content-center">
+              <div class="row justify-content-center">
                   <span class="gray col-4 text-right">回复</span>
                   <strong class="col-4">{{themeReplyNumber}}</strong>
               </div>

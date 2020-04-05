@@ -2,21 +2,21 @@ import request from '@/request/index'
 
 export function attentionUser(userId) {
   return request({
-    url: '/attention/user/'+userId,
+    url: '/relation/attention/user/'+userId,
     method: 'put'
   })
 }
 
 export function cancleAttentionUser(userId) {
   return request({
-    url: '/attention/user/'+userId,
+    url: '/relation/attention/user/'+userId,
     method: 'delete'
   })
 }
 
 export function isAttentionUser(userId) {
   return request({
-    url: '/attention/user/'+userId,
+    url: '/relation/attention/user/'+userId,
     method: 'get'
   })
 }
@@ -24,21 +24,21 @@ export function isAttentionUser(userId) {
 
 export function blockUser(userId) {
   return request({
-    url: '/block/user/'+userId,
+    url: '/relation/block/user/'+userId,
     method: 'put'
   })
 }
 
 export function cancleBlockUser(userId) {
   return request({
-    url: '/block/user/'+userId,
+    url: '/relation/block/user/'+userId,
     method: 'delete'
   })
 }
 
 export function isBlockUser(userId) {
   return request({
-    url: '/block/user/'+userId,
+    url: '/relation/block/user/'+userId,
     method: 'get'
   })
 }
