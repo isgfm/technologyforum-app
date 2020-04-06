@@ -62,3 +62,25 @@ export function getThemeListByUserId(userId,page,pageSize){
         }
     });
 }
+
+export function getThemeListByUserAttention(page,pageSize){
+    return request({
+        url:'/theme/user/attention',
+        method:'get',
+        params:{
+            page:page,
+            pageSize:pageSize
+        }
+    });
+}
+
+export function getThemeListByUserKeep(page,pageSize){
+    return request({
+        url:'/theme/user/keep',
+        method:'get',
+        params:{
+            page:page,
+            pageSize:pageSize
+        }
+    });
+}

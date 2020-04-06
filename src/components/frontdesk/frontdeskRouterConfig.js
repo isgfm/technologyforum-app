@@ -124,6 +124,34 @@ const frontdeskRouter = {
                     component:r => require.ensure([], () => r(require('@frontdesk/member/components/memberProfile/MemberProfile')), 'MemberProfile')
                 }
             ]
+        },
+        {
+            path:'/my',
+            components:{
+                main:r => require.ensure([], () => r(require('@frontdesk/member/page/MemberMain')), 'MemberMain'),
+                right:r => require.ensure([], () => r(require('@frontdesk/member/page/MemberRight')), 'MemberRight')
+            },
+            meta:{
+                requireLogin: true
+            },
+            children:[
+                {
+                    path:'nodes',
+                    components:{
+                        myMain:r => require.ensure([], () => r(require('@frontdesk/my/components/myKeepNodes/MyKeepNodes')), 'MyKeepNodes'),
+                        right:r => require.ensure([], () => r(require('@frontdesk/my/components/myKeepNodes/MyKeepNodes')), 'MyKeepNodes')
+                    }
+                        
+                },
+                {
+                    path:'themes',
+                    component:r => require.ensure([], () => r(require('@frontdesk/my/components/myKeepThemeList/MyKeepThemeList')), 'MyKeepThemes')
+                },
+                {
+                    path:'attention',
+                    component:r => require.ensure([], () => r(require('@frontdesk/my/components/attentionUsersThemeList/AttentionUsersThemeList')), 'AttentionUsersThemeList')
+                }
+            ]
         }
     ]
 };

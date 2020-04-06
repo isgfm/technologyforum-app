@@ -64,3 +64,9 @@ export function getNodeByNodeRouter(nodeRouter){
     });
 }
 
+export function getNodesByUserKeep(){
+    return request({
+        url:'/themeclass/keep',
+        method:'get'
+    });
+}
