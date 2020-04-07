@@ -128,8 +128,8 @@ const frontdeskRouter = {
         {
             path:'/my',
             components:{
-                main:r => require.ensure([], () => r(require('@frontdesk/member/page/MemberMain')), 'MemberMain'),
-                right:r => require.ensure([], () => r(require('@frontdesk/member/page/MemberRight')), 'MemberRight')
+                main:r => require.ensure([], () => r(require('@frontdesk/my/page/MyMain')), 'MyMain'),
+                right:r => require.ensure([], () => r(require('@frontdesk/my/page/MyRight')), 'MyRight')
             },
             meta:{
                 requireLogin: true
@@ -137,11 +137,7 @@ const frontdeskRouter = {
             children:[
                 {
                     path:'nodes',
-                    components:{
-                        myMain:r => require.ensure([], () => r(require('@frontdesk/my/components/myKeepNodes/MyKeepNodes')), 'MyKeepNodes'),
-                        right:r => require.ensure([], () => r(require('@frontdesk/my/components/myKeepNodes/MyKeepNodes')), 'MyKeepNodes')
-                    }
-                        
+                    component:r => require.ensure([], () => r(require('@frontdesk/my/components/myKeepNodes/MyKeepNodes')), 'MyKeepNodes')
                 },
                 {
                     path:'themes',

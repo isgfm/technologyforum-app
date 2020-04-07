@@ -32,7 +32,7 @@
           style="border-left: 1px solid rgba(100, 100, 100, 0.4); border-right: 1px solid rgba(100, 100, 100, 0.4);"
         >
           <router-link
-            to="/my/topics"
+            to="/my/themes"
             class="dark text-center"
             style="display:block;"
           >
@@ -43,7 +43,7 @@
         </div>
         <div class="col-4">
           <router-link
-            to="/my/following"
+            to="/my/attention"
             class="dark text-center"
             style="display:block;"
           >

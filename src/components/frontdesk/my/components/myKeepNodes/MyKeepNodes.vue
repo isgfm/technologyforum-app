@@ -29,8 +29,8 @@
           <div class="sep10"></div>
           {{ nodeVO.themeClass.cName }}
           <div class="sep5"></div>
-          <span class="fade f12"
-            ><i class="fa el-icon-s-comment"></i> {{ nodeVO.themeCount }}</span
+          <span class="f12"
+            >主题总数:{{nodeVO.themeCount }}</span
           >
         </div></router-link
       >
