@@ -3,17 +3,17 @@
     <el-row class="content">
       <el-col :span="3">
         <div class="logo-box float-left">
-          <router-link to="/" title="way to explore">
-            <img :src="require('@/assets/img/v2ex@2x.png')" id="logo">
+          <router-link to="/" title="Viewer">
+            <img :src="require('@/assets/img/viewer.png')" id="logo">
           </router-link> 
         </div>
       </el-col>
-      <el-col :span="10">
+      <!-- <el-col :span="10">
         <div class="search float-left">
           <frontdesk-search/>
         </div>
-      </el-col>
-      <el-col :span="11">
+      </el-col> -->
+      <el-col :span="21">
         <div class="header-button float-right">
         <template v-if="!isLogIn">
           <router-link to="/">首页</router-link>
@@ -43,7 +43,7 @@ import {memberRouter} from '@/router/routerUrl'
 export default {
   name:'FrontdeskHeader',
   components:{
-    'frontdesk-search':FrontdeskSearch
+    // 'frontdesk-search':FrontdeskSearch
   },
   computed:{
     isLogIn(){

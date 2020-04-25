@@ -6,7 +6,7 @@
         <li>
           <span class="f13">尊重原创</span>
           <div class="sep10"></div>
-          请不要在 V2EX 发布任何盗版下载链接，包括软件、音乐、电影等等。V2EX
+          请不要在 Viewer 发布任何盗版下载链接，包括软件、音乐、电影等等。Viewer
           是创意工作者的社区，我们尊重原创。
           <div class="sep10"></div>
         </li>

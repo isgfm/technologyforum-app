@@ -22,7 +22,7 @@
           <KeepNodeBtn :nodeId="nodeRouterVO.themeClass.nId"/>
         </template>
       </div>
-      <router-link to="/">V2EX</router-link> <span class="chevron">&nbsp;›&nbsp;</span> {{nodeRouterVO.themeClass.cName}}
+      <router-link to="/">Viewer</router-link> <span class="chevron">&nbsp;›&nbsp;</span> {{nodeRouterVO.themeClass.cName}}
       <div class="sep10"></div>
       <div class="sep5"></div>
       <template v-if="loginUser!=null">

@@ -13,7 +13,7 @@
               loading="lazy"
           /></router-link>
         </div>
-        <router-link to="/">V2EX</router-link>
+        <router-link to="/">Viewer</router-link>
         <span class="chevron">&nbsp;›&nbsp;</span>
         <router-link :to="nodeUrl(theme.nThemeClass)">{{
           themeClassName

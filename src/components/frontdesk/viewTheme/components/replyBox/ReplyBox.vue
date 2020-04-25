@@ -42,7 +42,7 @@
       />
     </div>
     <div class="inner">
-      <div class="fr"><router-link to="/">← V2EX</router-link></div>
+      <div class="fr"><router-link to="/">← Viewer</router-link></div>
       &nbsp;
     </div>
   </div>
@@ -55,6 +55,7 @@ import ReplyTinymceEditor from "@components/common/editor/ReplyTinymceEditor";
 import CKEditor from "@components/common/editor/CKEditor";
 import { reply } from "@api/theme/themeReplyApi";
 import { Message } from "element-ui";
+import {EventBus,REFRESH_EVENT} from "@eventBus/eventBus.js"
 export default {
   props: {
     themeId: {}
@@ -78,10 +79,10 @@ export default {
       } else{
           reply(this.themeId, this.replyContent).then(data=>{
               this.replyContent = '';
+              EventBus.$emit(REFRESH_EVENT);
           }).catch(error=>{
               console.log(error);
           })
-          
       }
     },
     backToTop() {

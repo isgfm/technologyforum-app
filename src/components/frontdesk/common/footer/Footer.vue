@@ -9,10 +9,10 @@
         </strong>
         <div class="sep20"></div>
 
-        创意工作者们的社区
+        Viewer网上交流社区
         <div class="sep5"></div>
 
-        World is powered by solitude
+        Viewer see world
         <div class="sep20"></div>
         <span class="small fade">♥ Do have faith in what you're doing.</span>
         <div class="sep10"></div>

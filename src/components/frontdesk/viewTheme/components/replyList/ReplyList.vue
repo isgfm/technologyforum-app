@@ -34,18 +34,26 @@
             </div>
             <div class="col-11">
               <div class="fr">
-                <!-- <div class="thank_area">
-              隐藏，感谢
-            </div> -->
-                <a href="#" @click="replyOne(reply.themeReplyOwner.nId,reply.themeReplyOwner.cUsername)">
-                  <img
-                    :src="require('@/assets/img/reply_neue.png')"
-                    align="absmiddle"
-                    border="0"
-                    alt="Reply"
-                    width="20"
-                  />
-                </a>
+                <template v-if="loginUser != null">
+                  <a
+                    href="#"
+                    @click="
+                      replyOne(
+                        reply.themeReplyOwner.nId,
+                        reply.themeReplyOwner.cUsername
+                      )
+                    "
+                  >
+                    <img
+                      :src="require('@/assets/img/reply_neue.png')"
+                      align="absmiddle"
+                      border="0"
+                      alt="Reply"
+                      width="20"
+                    />
+                  </a>
+                </template>
+
                 &nbsp;&nbsp;
                 <span class="no">{{ (index + 1) * currentPage }}</span>
               </div>
@@ -61,7 +69,9 @@
               <span class="ago">{{ ftime(reply.themeReply.dReplyTime) }}</span>
               <div class="sep5"></div>
               <div class="reply_content">
-                <v-runtime-template :template="reply.themeReply.cReplyContent"></v-runtime-template>
+                <v-runtime-template
+                  :template="reply.themeReply.cReplyContent"
+                ></v-runtime-template>
                 //asd
               </div>
             </div>
@@ -76,18 +86,19 @@
 import { Ftime } from "@util/themeUtil";
 import Pagination from "@common/pagination/Pagination";
 import { getThemeReply } from "@api/theme/themeReplyApi";
-import {memberRouter} from '@/router/routerUrl';
+import { memberRouter } from "@/router/routerUrl";
 import VRuntimeTemplate from "v-runtime-template";
+import {EventBus,REFRESH_EVENT} from "@eventBus/eventBus.js"
 export default {
   created() {
     this.getThemeReplyFromServer(this.themeId, this.currentPage, this.pageSize);
   },
   props: {
-    themeId: {}
+    themeId: {},
   },
   components: {
     Pagination,
-    VRuntimeTemplate
+    VRuntimeTemplate,
   },
   data() {
     return {
@@ -95,7 +106,7 @@ export default {
       lastThemeReply: "",
       pageSize: 20,
       totalReply: 0,
-      currentPage: 1
+      currentPage: 1,
     };
   },
   methods: {
@@ -103,7 +114,7 @@ export default {
       this.currentPage = newPage;
     },
     getThemeReplyFromServer(themeId, page, pageSize) {
-      getThemeReply(themeId, page, pageSize).then(data => {
+      getThemeReply(themeId, page, pageSize).then((data) => {
         let result = data.data;
         this.replyList = result.themeReplyBOList;
         this.totalReply = result.totalReply;
@@ -113,11 +124,11 @@ export default {
     memberUrl(id) {
       return memberRouter(id);
     },
-    ftime: function(timespan) {
+    ftime: function (timespan) {
       return Ftime(timespan);
     },
-    replyOne:function(userId,username){
-      this.$store.dispatch("replyOne",{userId,username});
+    replyOne: function (userId, username) {
+      this.$store.dispatch("replyOne", { userId, username });
     }
   },
   computed: {
@@ -126,7 +137,19 @@ export default {
     },
     isNoReply() {
       return this.totalReply === 0;
-    }
+    },
+    loginUser() {
+      return this.$store.state.userStore.user;
+    },
+  },
+  mounted(){
+    EventBus.$on(REFRESH_EVENT,()=>{
+      console.log("测试eventbus");
+      this.getThemeReplyFromServer(this.themeId, this.currentPage, this.pageSize);
+    });
+  },
+  beforeDestroy(){
+    EventBus.off(REFRESH_EVENT);
   }
 };
 </script>

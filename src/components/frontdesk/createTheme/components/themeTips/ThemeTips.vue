@@ -21,7 +21,7 @@
           </div> -->
           <span class="f13">正文</span>
           <div class="sep10"></div>
-          可以在正文中为你要发布的主题添加更多细节。V2EX 支持
+          可以在正文中为你要发布的主题添加更多细节。Viewer 支持
           <span style="font-family: Consolas, 'Panic Sans', mono"
             ><a
               href="https://help.github.com/articles/github-flavored-markdown"

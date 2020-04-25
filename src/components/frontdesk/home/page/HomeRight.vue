@@ -5,12 +5,12 @@
       <profile/>
       <div class="sep20"></div>
     </template>
-    <forum-state />
-    <div class="sep20"></div>
     <today-hottheme />
     <div class="sep20"></div>
     <hot-node />
-    
+    <div class="sep20"></div>
+    <forum-state />
+    <div class="sep20"></div>
   </div>
 </template>
 

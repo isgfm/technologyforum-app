@@ -9,7 +9,7 @@
 
   <el-form-item>
       <el-col :span="10">
-        <span> V2EX第{{ user != null ? user.nId : "数据未加载" }}位会员 </span>
+        <span> Viewer第{{ user != null ? user.nId : "数据未加载" }}位会员 </span>
       </el-col>
     </el-form-item>
     

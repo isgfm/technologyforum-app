@@ -15,7 +15,7 @@
           <h1 style="margin-bottom: 5px;">{{ user.cUsername }}</h1>
           <div class="sep10"></div>
           <span class="gray"
-            >V2EX 第 {{ user.nId }} 号会员，加入于 {{ user.dCreateTime }}
+            >Viewer 第 {{ user.nId }} 号会员，加入于 {{ user.dCreateTime }}
           </span>
         </div>
       </div>

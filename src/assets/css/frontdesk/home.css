@@ -115,6 +115,10 @@ a.tb:active, a.tb:link, a.tb:visited {
 }
 
 .hidden-element{
+    display: hidden;
+}
+
+.hidden-placeholder{
     display: none;
 }
 

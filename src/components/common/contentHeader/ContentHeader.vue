@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-      <router-link to="/">V2EX</router-link>
+      <router-link to="/">Viewer</router-link>
       <span class="chevron">&nbsp;›&nbsp;</span>
       <span>{{tip}}</span>
   </div>
