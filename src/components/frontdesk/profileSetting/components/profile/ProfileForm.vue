@@ -1,22 +1,19 @@
 <template>
-  <el-form
+  <!-- <el-form
     ref="profileForm"
     :model="profileForm"
     label-position="right"
     label-width="155px"
     size="mini"
   >
-
-  <el-form-item>
+    <el-form-item label="测试">
       <el-col :span="10">
-        <span> Viewer第{{ user != null ? user.nId : "数据未加载" }}位会员 </span>
+        <span> Viewer第{{ profileForm.nId }}位会员 </span>
       </el-col>
     </el-form-item>
-    
     <el-form-item label="用户名">
       <el-col :span="12">
-        <span>{{ user != null ? user.cUsername : "" }}</span>
-        <!-- <el-input v-model="profileForm.test"></el-input> -->
+        <span>{{ profileForm.cUsername }}</span>
       </el-col>
     </el-form-item>
     <el-form-item label="性别" prop="nSex">
@@ -72,16 +69,46 @@
         <el-button type="primary" @click="save">保存</el-button>
       </el-col>
     </el-form-item>
-  </el-form>
+  </el-form> -->
+  <v-form ref="form">
+    <v-text-field
+      v-model="profileForm.cUsername"
+      label="用户名"
+      disabled
+    ></v-text-field>
+    <v-text-field v-model="profileForm.cEmail" label="电子邮件"></v-text-field>
+    <v-select v-model="profileForm.nSex" :items="sex" label="性别"></v-select>
+    <v-text-field v-model="profileForm.cTelephone" label="电话"></v-text-field>
+    <v-text-field
+      v-model="profileForm.cPersonalWebsite"
+      label="个人网站"
+    ></v-text-field>
+    <v-text-field v-model="profileForm.cCompany" label="公司"></v-text-field>
+    <v-text-field v-model="profileForm.cPosition" label="职位"></v-text-field>
+    <v-text-field v-model="profileForm.cLocation" label="所在地"></v-text-field>
+    <v-text-field v-model="profileForm.cSignature" label="签名"></v-text-field>
+    <v-text-field
+      v-model="profileForm.cPersonalIntroduction"
+      label="个人介绍"
+    ></v-text-field>
+    <el-button type="primary" @click="save">
+      保存
+    </el-button>
+  </v-form>
 </template>
 
 <script>
 import ContentHeader from "@common/contentHeader/ContentHeader";
-import { saveProfile } from "@api/user/user";
+import { saveProfile, getCurrentUserInfo } from "@api/user/user";
 export default {
+  created() {
+    this.loadUser();
+  },
   data() {
     return {
       profileForm: {
+        nId: "",
+        cUsername: "",
         cEmail: "",
         nSex: "",
         cTelephone: "",
@@ -90,33 +117,45 @@ export default {
         cPosition: "",
         cLocation: "",
         cSignature: "",
-        cPersonalIntroduction: ""
-      }
+        cPersonalIntroduction: "",
+      },
+      sex: [
+        {
+          text: "男",
+          value: 1,
+        },
+        {
+          text: "女",
+          value: 0,
+        },
+      ],
     };
   },
-  computed: {
-    user: function() {
-      return this.$store.state.userStore.user;
-    }
-  },
-  watch: {
-    user: {
-      handler(newVal, oldVal) {
-        if (newVal != null) {
-          this.profileForm.cEmail = this.user.cEmail;
-          this.profileForm.nSex = String(this.user.nSex);
-          this.profileForm.cTelephone = this.user.cTelephone;
-          this.profileForm.cPersonalWebsite = this.user.cPersonalWebsite;
-          this.profileForm.cCompany = this.user.cCompany;
-          this.profileForm.cPosition = this.user.cPosition;
-          this.profileForm.cLocation = this.user.cLocation;
-          this.profileForm.cSignature = this.user.cSignature;
-          this.profileForm.cPersonalIntroduction = this.user.cPersonalIntroduction;
-        }
-      }
-    }
-  },
   methods: {
+    loadUser() {
+      getCurrentUserInfo()
+        .then((data) => {
+          let user = data.data;
+          this.profileForm.cUsername = user.cUsername;
+          this.profileForm.nId = user.nId;
+          this.profileForm.cEmail = user.cEmail;
+          this.profileForm.nSex = user.nSex;
+          this.profileForm.cTelephone = user.cTelephone;
+          this.profileForm.cPersonalWebsite = user.cPersonalWebsite;
+          this.profileForm.cCompany = user.cCompany;
+          this.profileForm.cPosition = user.cPosition;
+          this.profileForm.cLocation = user.cLocation;
+          this.profileForm.cSignature = user.cSignature;
+          this.profileForm.cPersonalIntroduction = user.cPersonalIntroduction;
+        })
+        .catch((error) => {
+          this.$message({
+            message: "加载用户失败",
+            type: "error",
+            showClose: true,
+          });
+        });
+    },
     save() {
       var sex = this.profileForm.nSex;
       if (sex != null) {
@@ -125,22 +164,22 @@ export default {
       }
       var profileData = JSON.parse(JSON.stringify(this.profileForm));
       saveProfile(profileData)
-        .then(data => {
+        .then((data) => {
           this.$message({
             message: "保存成功",
             type: "success",
-            showClose: true
+            showClose: true,
           });
         })
-        .catch(error => {
+        .catch((error) => {
           this.$message({
             message: error + "保存失败",
             type: "error",
-            showClose: true
+            showClose: true,
           });
         });
-    }
-  }
+    },
+  },
 };
 </script>
 

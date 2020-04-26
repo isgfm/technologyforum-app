@@ -10,6 +10,12 @@ const keepStore={
         },
         addKeepThemeCount(state,keepThemeCount){
             state.keepThemeCount += keepThemeCount;
+        },
+        setKeepNodeCount(state,keepNodeCount){
+            state.keepNodeCount = keepNodeCount;
+        },
+        setKeepThemeCount(state,keepThemeCount){
+            state.keepThemeCount = keepThemeCount;
         }
     },
     actions:{
@@ -18,6 +24,10 @@ const keepStore={
         },
         addKeepThemeCount({commit},keepThemeCount){
             commit('addKeepThemeCount',keepThemeCount);
+        },
+        initKeepCount({commit},{keepNodeCount,keepThemeCount}){
+            commit('setKeepNodeCount',keepNodeCount);
+            commit('setKeepThemeCount',keepThemeCount);
         }
     }
 }

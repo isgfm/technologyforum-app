@@ -117,8 +117,9 @@ export default {
         // this.keepThemeCount = result.keepThemeCount;
         this.attentionCount = result.attentionCount;
         this.notifyCount = result.notifyCount;
-        this.$store.dispatch('addKeepNodeCount',result.keepNodeCount);
-        this.$store.dispatch('addKeepThemeCount',result.keepThemeCount);
+        let keepNodeCount = result.keepNodeCount;
+        let keepThemeCount = result.keepThemeCount;
+        this.$store.dispatch('initKeepCount',{keepNodeCount,keepThemeCount});
       }).catch(error=>{
 
       });
