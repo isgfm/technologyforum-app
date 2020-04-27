@@ -88,7 +88,13 @@ export default {
       }
       publishTheme(this.themeForm)
         .then(data => {
-          console.log("主题id为" + data.data);
+          this.$message({
+            message: "发布成功",
+            type: "success",
+            showClose: true
+          });
+          let themeId = data.data;
+          // this.$router.push({name:"/t",params:{themeId}});
         })
         .catch(error => {
           this.$message({

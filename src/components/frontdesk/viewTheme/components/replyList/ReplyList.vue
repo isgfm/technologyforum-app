@@ -72,7 +72,6 @@
                 <v-runtime-template
                   :template="reply.themeReply.cReplyContent"
                 ></v-runtime-template>
-                //asd
               </div>
             </div>
           </div>
