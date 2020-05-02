@@ -5,6 +5,9 @@
     </div>
     <template v-if="loginUser != null">
       <KeepBtn :themeId="themeId" @addKeepCount="addKeepCount" />
+      <template v-if="loginUser.nAdmin==1">
+        <HideThemeBtn :themeId="themeId"></HideThemeBtn>
+      </template>
     </template>
     <template v-else>
         <a
@@ -20,9 +23,11 @@
 <script>
 import { keepTheme } from "@api/theme/themeApi";
 import KeepBtn from "../keepBtn/KeepBtn";
+import HideThemeBtn from "../hideThemeBtn/HideThemeBtn"
 export default {
   components: {
     KeepBtn,
+    HideThemeBtn
   },
   props: {
     click: {

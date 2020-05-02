@@ -2,6 +2,7 @@ import axios from "axios";
 import { Message } from "element-ui";
 import store from "@/store/index";
 import { getToken, removeToken } from "./token";
+import router from '@/router/index'
 
 const service = axios.create({
   baseURL: "http://localhost:3333/api",
@@ -37,13 +38,13 @@ service.interceptors.response.use(
       if (res.code === 90001) {
         return Promise.reject("error");
       }
-      if (res.code === 50001) {
+      if (res.code === 50001 || res.code === 50005) {
         Message({
-          type: "warning",
+          type: "error",
           showClose: true,
           message: res.message
         });
-        return Promise.reject("error");
+        return Promise.reject(res);
       }
 
       if (res.code === 20004) {

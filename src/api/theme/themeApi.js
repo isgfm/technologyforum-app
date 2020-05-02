@@ -84,3 +84,17 @@ export function getThemeListByUserKeep(page,pageSize){
         }
     });
 }
+
+export function isHideTheme(themeId) {
+    return request({
+      url: '/theme/hide/'+themeId,
+      method: 'get'
+    })
+  }
+  
+  export function hideTheme(themeId) {
+    return request({
+      url: '/theme/hide/'+themeId,
+      method: 'put'
+    })
+  }

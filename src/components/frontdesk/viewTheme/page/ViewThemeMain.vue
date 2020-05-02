@@ -30,8 +30,7 @@
       </div>
       <div class="cell">
         <div class="topic_content">
-          <div class="markdown_body" v-html="theme.cThemeContent">
-          </div>
+          <div class="markdown_body" v-html="theme.cThemeContent"></div>
         </div>
       </div>
       <TopicButtons
@@ -43,8 +42,8 @@
     <div class="sep20"></div>
     <ReplyList :themeId="themeId" />
     <div class="sep20"></div>
-    <template v-if="loginUser!=null">
-      <ReplyBox :themeId="themeId"/>
+    <template v-if="loginUser != null">
+      <ReplyBox :themeId="themeId" />
     </template>
   </div>
 </template>
@@ -55,16 +54,16 @@ import TopicButtons from "@frontdesk/viewTheme/components/topicButtons/TopicButt
 import ReplyList from "@frontdesk/viewTheme/components/replyList/ReplyList";
 import { getTheme } from "@api/theme/themeApi";
 import { Message } from "element-ui";
-import ReplyBox from "../components/replyBox/ReplyBox"
-import {memberRouter,nodeRouter} from '@/router/routerUrl';
+import ReplyBox from "../components/replyBox/ReplyBox";
+import { memberRouter, nodeRouter } from "@/router/routerUrl";
 export default {
   components: {
     TopicButtons,
     ReplyList,
-    ReplyBox
+    ReplyBox,
   },
   props: {
-    themeId: {}
+    themeId: {},
   },
   created() {
     this.getThemeFromServer(this.themeId);
@@ -74,7 +73,7 @@ export default {
       theme: "",
       themeOwner: "",
       themeClassName: "",
-      themeKeepCount:0
+      themeKeepCount: 0,
     };
   },
   methods: {
@@ -89,26 +88,29 @@ export default {
     },
     getThemeFromServer: function(themeId) {
       getTheme(themeId)
-        .then(data => {
+        .then((data) => {
           this.theme = data.data.theme;
           this.themeOwner = data.data.themeOwner;
           this.themeClassName = data.data.themeClassName;
           this.themeKeepCount = data.data.keepCount;
         })
-        .catch(error => {
+        .catch((error) => {
           this.$message({
             message: error + "主题加载错误",
             type: "error",
-            showClose: true
+            showClose: true,
           });
+          if (error.code === 50005 || error.code === 50001) {
+            this.$router.push({ path: "/" });
+          }
         });
-    }
+    },
   },
-  computed:{
+  computed: {
     loginUser() {
       return this.$store.state.userStore.user;
-    }
-  }
+    },
+  },
 };
 </script>
 
