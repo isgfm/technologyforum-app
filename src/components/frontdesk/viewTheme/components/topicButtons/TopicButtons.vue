@@ -8,12 +8,14 @@
       <template v-if="loginUser.nAdmin==1">
         <HideThemeBtn :themeId="themeId"></HideThemeBtn>
       </template>
-      <a
+      <template v-else>
+        <a
       href="#"
       class="tb"
       style="visibility:hidden"
       >占位</a
     >
+      </template>
     </template>
     <template v-else>
         <a

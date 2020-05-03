@@ -94,7 +94,7 @@ export default {
             showClose: true
           });
           let themeId = data.data;
-          // this.$router.push({name:"/t",params:{themeId}});
+          this.$router.push({path:`/t/${themeId}`});
         })
         .catch(error => {
           this.$message({
