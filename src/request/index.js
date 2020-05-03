@@ -36,11 +36,11 @@ service.interceptors.response.use(
     if (res.code !== 0) {
       //90001 Session超时
       if (res.code === 90001) {
-        return Promise.reject("error");
+        return Promise.reject(res);
       }
       if (res.code === 50001 || res.code === 50005) {
         Message({
-          type: "error",
+          type: res,
           showClose: true,
           message: res.message
         });
@@ -49,11 +49,11 @@ service.interceptors.response.use(
 
       if (res.code === 20004) {
         Message({
-          type: "error",
+          type: res,
           showClose: true,
           message: res.message
         });
-        return Promise.reject("error");
+        return Promise.reject(res);
       }
 
       if (res.code === 50002) {
@@ -62,7 +62,7 @@ service.interceptors.response.use(
           showClose: true,
           message: res.message
         });
-        return Promise.reject("error");
+        return Promise.reject(res);
       }
       //20001 用户未登录
       if (res.code === 20001) {
@@ -76,7 +76,7 @@ service.interceptors.response.use(
           });
         }
 
-        return Promise.reject("error");
+        return Promise.reject(res);
       }
 
       //70001 权限认证错误
@@ -86,7 +86,7 @@ service.interceptors.response.use(
           showClose: true,
           message: "你没有权限访问哦"
         });
-        return Promise.reject("error");
+        return Promise.reject(res);
       }
 
       //20008 验证码过期
@@ -96,20 +96,20 @@ service.interceptors.response.use(
           showClose: true,
           message: "验证码过期"
         });
-        return Promise.reject("error");
+        return Promise.reject(res);
       }
 
       //20007 验证码错误
       if (res.code === 20007) {
         Message({
-          type: "error",
+          type: res,
           showClose: true,
           message: "验证码错误"
         });
-        return Promise.reject("error");
+        return Promise.reject(res);
       }
 
-      return Promise.reject(res.msg);
+      return Promise.reject(res);
     } else {
       try {
         res.data = JSON.parse(res.data);
@@ -125,7 +125,7 @@ service.interceptors.response.use(
       showClose: true,
       message: error + "连接超时"
     });
-    return Promise.reject("error");
+    return Promise.reject(error);
   }
 );
 

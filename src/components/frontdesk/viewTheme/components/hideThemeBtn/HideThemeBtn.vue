@@ -30,22 +30,30 @@ export default {
       });
     },
     Hide() {
-      hideTheme(this.themeId)
-        .then((data) => {
-          this.HideStatus = true;
-          this.$message({
-            message: "隐藏主题成功",
-            type: "success",
-          });
+      this.$confirm("是否隐藏主题", "确认信息", {
+        confirmButtonText: "确认",
+        cancelButtonText: "取消",
+      })
+        .then(() => {
+          hideTheme(this.themeId)
+            .then((data) => {
+              this.HideStatus = true;
+              this.$message({
+                message: "隐藏主题成功",
+                type: "success",
+              });
+            })
+            .catch((error) => {
+              this.$message({
+                message: "隐藏主题失败",
+                type: "error",
+              });
+            });
         })
-        .catch((error) => {
-          this.$message({
-            message: "隐藏主题失败",
-            type: "error",
-          });
-        });
-    }
-  }
+        .catch((action) => {});
+    },
+    cancleHide() {},
+  },
 };
 </script>
 

@@ -1,73 +1,73 @@
 <template>
   <div>
-    <template v-if="!attentionStatus">
-      <el-button type="info" @click='attention' round
-        >加入特别关注</el-button
-      >
+    <template v-if="!blockStatus">
+      <template v-if="isAdmin">
+        <el-button type="danger" @click="block" round>封禁该用户</el-button>
+      </template>
     </template>
     <template v-else>
-      <el-button type="danger" @click="cancleAttention" round
-        >取消特别关注</el-button
-      >
+      <el-button type="danger" round>用户已被封禁</el-button>
     </template>
   </div>
 </template>
 
 <script>
-import {
-  attentionUser,
-  cancleAttentionUser,
-  isAttentionUser
-} from "@api/keep/keepApi";
+import { blockUser, cancleBlockUser, isBlockUser } from "@api/user/user";
 export default {
   created() {
-    this.isAttention(this.userId);
+    this.isblock(this.userId);
   },
   props: {
-    userId: {}
+    userId: {},
+    isAdmin: {},
   },
   data() {
     return {
-      attentionStatus: false
+      blockStatus: false,
     };
   },
   methods: {
-    isAttention(userId) {
-      isAttentionUser(userId).then(data => {
-        this.attentionStatus = data.data;
+    isblock(userId) {
+      isBlockUser(userId).then((data) => {
+        this.blockStatus = data.data;
       });
     },
-    attention() {
-      this.$confirm("是否加入特别关注", "确认信息", {
+    block() {
+      this.$confirm("是否封禁该用户", "确认信息", {
         confirmButtonText: "确认",
-        cancelButtonText: "取消"
+        cancelButtonText: "取消",
       })
         .then(() => {
-          attentionUser(this.userId).then(data => {
-            this.attentionStatus = true;
+          blockUser(this.userId).then((data) => {
+            this.blockStatus = true;
             this.$message({
-              message: "特别关注成功",
-              type: "success"
+              message: "封禁成功",
+              type: "success",
             });
-          });
+          }).catch((error) => {
+              this.$message({
+                message: "封禁失败",
+                type: "error",
+              });
+            });
         })
-        .catch(action => {});
+        .catch((action) => {});
     },
-    cancleAttention() {
-      this.$confirm("是否取消特别关注", "确认信息", {
+    cancleblock() {
+      this.$confirm("是否取消封禁", "确认信息", {
         confirmButtonText: "确认",
-        cancelButtonText: "取消"
+        cancelButtonText: "取消",
       })
         .then(() => {
-          cancleAttentionUser(this.userId).then(data => {
-            this.attentionStatus = false;
+          cancleBlockUser(this.userId).then((data) => {
+            this.blockStatus = false;
             this.$message({
-              message: "取消特别关注成功",
-              type: "success"
+              message: "取消封禁成功",
+              type: "success",
             });
           });
         })
-        .catch(action => {});
+        .catch((action) => {});
     }
   }
 };

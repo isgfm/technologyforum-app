@@ -81,7 +81,11 @@ export default {
               this.replyContent = '';
               EventBus.$emit(REFRESH_EVENT);
           }).catch(error=>{
-              console.log(error);
+              Message({
+          type: "error",
+          showClose: true,
+          message: error.message
+        });
           })
       }
     },

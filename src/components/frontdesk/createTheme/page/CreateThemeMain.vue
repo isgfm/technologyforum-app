@@ -98,7 +98,7 @@ export default {
         })
         .catch(error => {
           this.$message({
-            message: error,
+            message: error.message,
             type: "error",
             showClose: true
           });

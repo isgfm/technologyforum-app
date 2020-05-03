@@ -11,6 +11,9 @@
               <AttentionBtn :userId="userId" />
               <!-- <el-button type="danger" @click="" round>Block</el-button> -->
             </template>
+            <template v-if="loginUser != null">
+              <BlockBtn :userId="userId" :isAdmin="loginUser.nAdmin==1"/>
+            </template>
           </div>
           <h1 style="margin-bottom: 5px;">{{ user.cUsername }}</h1>
           <div class="sep10"></div>
@@ -26,9 +29,11 @@
 <script>
 import { getUserByUserId } from "@api/user/user";
 import AttentionBtn from "../attentionBtn/AttentionBtn";
+import BlockBtn from "../blockBtn/BlockBtn"
 export default {
   components: {
-    AttentionBtn
+    AttentionBtn,
+    BlockBtn
   },
   props: {
     userId: {}

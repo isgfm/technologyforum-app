@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="float-left">
     <template v-if="!keepStatus">
       <a href="#" class="tb" @click="keep">加入收藏</a>
     </template>

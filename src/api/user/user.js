@@ -81,3 +81,24 @@ export function getUserStateCountByUserId(userId) {
     method: 'get'
   })
 }
+
+export function blockUser(userId) {
+  return request({
+    url: '/user/block/'+userId,
+    method: 'put'
+  })
+}
+
+export function cancleBlockUser(userId) {
+  return request({
+    url: '/user/block/cancle/'+userId,
+    method: 'put'
+  })
+}
+
+export function isBlockUser(userId) {
+  return request({
+    url: '/user/block/'+userId,
+    method: 'get'
+  })
+}

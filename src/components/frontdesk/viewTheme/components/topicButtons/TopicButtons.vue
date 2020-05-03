@@ -8,6 +8,12 @@
       <template v-if="loginUser.nAdmin==1">
         <HideThemeBtn :themeId="themeId"></HideThemeBtn>
       </template>
+      <a
+      href="#"
+      class="tb"
+      style="visibility:hidden"
+      >占位</a
+    >
     </template>
     <template v-else>
         <a
@@ -38,10 +44,7 @@ export default {
       type: Number,
       default: 0,
     },
-    themeId: {
-      type: Number,
-      default: 0,
-    },
+    themeId: {},
   },
   methods: {
     addKeepCount(count) {
