@@ -147,7 +147,7 @@ export default {
     });
   },
   beforeDestroy(){
-    EventBus.off(REFRESH_EVENT);
+    EventBus.$off(REFRESH_EVENT);
   }
 };
 </script>

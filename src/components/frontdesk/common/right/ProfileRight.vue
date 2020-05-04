@@ -22,7 +22,7 @@
             class="dark text-center"
             style="display:block;"
           >
-            <span class="bigger">{{keepNodeCount}}</span>
+            <span class="bigger">{{ keepNodeCount }}</span>
             <div class="sep3"></div>
             <span class="gray">节点收藏</span>
           </router-link>
@@ -36,7 +36,7 @@
             class="dark text-center"
             style="display:block;"
           >
-            <span class="bigger">{{keepThemeCount}}</span>
+            <span class="bigger">{{ keepThemeCount }}</span>
             <div class="sep3"></div>
             <span class="gray">主题收藏</span>
           </router-link>
@@ -47,7 +47,7 @@
             class="dark text-center"
             style="display:block;"
           >
-            <span class="bigger">{{attentionCount}}</span>
+            <span class="bigger">{{ attentionCount }}</span>
             <div class="sep3"></div>
             <span class="gray">特别关注</span>
           </router-link>
@@ -67,7 +67,7 @@
       </div>
     </div>
     <div class="inner">
-      <a href="/notifications" class="gray">{{notifyCount}} 条未读提醒</a>
+      <router-link to="/notifications" class="gray">{{ notifyCount }} 条未读提醒</router-link>
     </div>
   </div>
 </template>
@@ -85,8 +85,8 @@ export default {
     return {
       // keepNodeCount: 0,
       // keepThemeCount: 0,
-      attentionCount: 0,
-      notifyCount: 0
+      // attentionCount: 0,
+      // notifyCount: 0,
     };
   },
   computed: {
@@ -99,32 +99,51 @@ export default {
     id: function() {
       return this.$store.state.userStore.user.nId;
     },
-    keepNodeCount:function(){
+    keepNodeCount: function() {
       return this.$store.state.keepStore.keepNodeCount;
     },
-    keepThemeCount:function(){
+    keepThemeCount: function() {
       return this.$store.state.keepStore.keepThemeCount;
-    }
+    },
+    attentionCount: function() {
+      return this.$store.state.keepStore.attentionCount;
+    },
+    notifyCount: function() {
+      return this.$store.state.keepStore.notifyCount;
+    },
   },
   methods: {
     memberUrl(id) {
       return memberRouter(id);
     },
     getUserStateCountByUserIdFromServer(userId) {
-      getUserStateCountByUserId(userId).then(data => {
-        let result = data.data;
-        // this.keepNodeCount = result.keepNodeCount;
-        // this.keepThemeCount = result.keepThemeCount;
-        this.attentionCount = result.attentionCount;
-        this.notifyCount = result.notifyCount;
-        let keepNodeCount = result.keepNodeCount;
-        let keepThemeCount = result.keepThemeCount;
-        this.$store.dispatch('initKeepCount',{keepNodeCount,keepThemeCount});
-      }).catch(error=>{
-
-      });
-    }
-  }
+      getUserStateCountByUserId(userId)
+        .then((data) => {
+          let result = data.data;
+          // this.keepNodeCount = result.keepNodeCount;
+          // this.keepThemeCount = result.keepThemeCount;
+          // this.attentionCount = result.attentionCount;
+          // this.notifyCount = result.notifyCount;
+          let keepNodeCount = result.keepNodeCount;
+          let keepThemeCount = result.keepThemeCount;
+          let attentionCount = result.attentionCount;
+          let notifyCount = result.notifyCount;
+          this.$store.dispatch("initCount", {
+            keepNodeCount,
+            keepThemeCount,
+            notifyCount,
+            attentionCount
+          });
+        })
+        .catch((error) => {
+          this.$message({
+            message: "加载用户状态失败",
+            type: "error",
+            showClose: true,
+          });
+        });
+    },
+  },
 };
 </script>
 

@@ -148,6 +148,17 @@ const frontdeskRouter = {
                     component:r => require.ensure([], () => r(require('@frontdesk/my/components/attentionUsersThemeList/AttentionUsersThemeList')), 'AttentionUsersThemeList')
                 }
             ]
+        },
+        {
+            path:'/notifications',
+            components:{
+                main:r => require.ensure([], () => r(require('@frontdesk/notify/page/NotifyMain')), 'NotifyMain'),
+                right:r => require.ensure([], () => r(require('@frontdesk/notify/page/NotifyRight')), 'NotifyRight')
+            },
+            meta:{
+                title:'提醒',
+                requireLogin: true
+            }
         }
     ]
 };

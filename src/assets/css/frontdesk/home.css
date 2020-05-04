@@ -114,6 +114,16 @@ a.tb:active, a.tb:link, a.tb:visited {
     color: #999;
 }
 
+.readed-notify{
+    color: #ccc;
+}
+
+.notify-box{
+    padding-left: 10px;
+    height: 32px;
+    border-bottom: 1px solid var(--box-border-color);
+}
+
 .hidden-element{
     display: hidden;
 }

@@ -15,3 +15,15 @@ export function themeRouter(themeId){
 }
 
 export const newThemeRouter = "/new";
+
+export function themeRouterHtml(theme){
+    return `<router-link to="${themeRouter(theme.nId)}">
+    ${theme.cThemeTitle}
+  </router-link>`;
+}
+
+export function userRouterHtml(user){
+    return `<router-link to="${memberRouter(user.nId)}">
+    ${user.cUsername}
+  </router-link>`;
+}
