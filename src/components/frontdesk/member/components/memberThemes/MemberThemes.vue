@@ -56,11 +56,11 @@
             </span>
           </div>
           <div class="col-1">
-            <a
-              :href="themeUrl(themeVO.theme.nId)"
+            <router-link
+              :to="themeUrl(themeVO.theme.nId)"
               class="count_livid float-right"
               v-text="themeVO.countReply"
-            ></a>
+            ></router-link>
           </div>
         </div>
       </div>

@@ -37,10 +37,10 @@
             <div class="sep5"></div>
             <span class="topic_info">
               <strong>
-                <a
-                  :href="userUrl(themeVO.themeOwner.nId)"
+                <router-link
+                  :to="userUrl(themeVO.themeOwner.nId)"
                   v-text="themeVO.themeOwner.cUsername"
-                ></a>
+                ></router-link>
               </strong>
               <template v-if="themeVO.countReply > 0">
                 &nbsp;•&nbsp; 最后回复
@@ -51,11 +51,11 @@
             </span>
           </div>
           <div class="col-1">
-            <a
-              :href="themeUrl(themeVO.theme.nId)"
+            <router-link
+              :to="themeUrl(themeVO.theme.nId)"
               class="count_livid float-right"
               v-text="themeVO.countReply"
-            ></a>
+            ></router-link>
           </div>
         </div>
       </div>
