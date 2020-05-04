@@ -28,7 +28,7 @@
           style="overflow: hidden; overflow-wrap: break-word; resize: none; height: 112px;"
         ></textarea>
       </vue-tribute> -->
-      <CKEditor :value.sync="replyContent" :themeId="themeId" />
+      <CKEditor ref="editor" :value.sync="replyContent" :themeId="themeId" @clean="12"/>
       <div class="sep10"></div>
       <div class="fr">
         <div class="sep5"></div>
@@ -79,6 +79,7 @@ export default {
       } else{
           reply(this.themeId, this.replyContent).then(data=>{
               this.replyContent = '';
+              this.$refs.editor.cleanContent();
               EventBus.$emit(REFRESH_EVENT);
           }).catch(error=>{
               Message({

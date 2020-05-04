@@ -143,7 +143,6 @@ export default {
   },
   mounted(){
     EventBus.$on(REFRESH_EVENT,()=>{
-      console.log("测试eventbus");
       this.getThemeReplyFromServer(this.themeId, this.currentPage, this.pageSize);
     });
   },

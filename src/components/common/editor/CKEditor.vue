@@ -79,6 +79,9 @@ export default {
     };
   },
   methods: {
+    cleanContent(){
+      this.editText = "";
+    },
     memberUrl(id) {
       return memberRouter(id);
     },
