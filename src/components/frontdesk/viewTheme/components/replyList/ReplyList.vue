@@ -111,6 +111,7 @@ export default {
   methods: {
     currentChange(newPage) {
       this.currentPage = newPage;
+      this.getThemeReplyFromServer(this.themeId, this.currentPage, this.pageSize);
     },
     getThemeReplyFromServer(themeId, page, pageSize) {
       getThemeReply(themeId, page, pageSize).then((data) => {

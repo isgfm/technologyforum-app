@@ -62,6 +62,7 @@ export default {
   methods: {
     currentChange(newPage) {
       this.currentPage = newPage;
+      this.getNotifyListFromServe(this.currentPage, this.pageSize);
     },
     getNotifyListFromServe(page, pageSize) {
       getNotifyList(page, pageSize)

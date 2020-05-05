@@ -91,6 +91,7 @@ export default {
   methods: {
     currentChange(newPage) {
       this.currentPage = newPage;
+      this.getThemeVOListFromServer(this.currentPage,this.pageSize);
     },
     getThemeVOListFromServer(page, pageSize) {
       getThemeListByUserKeep(page, pageSize).then(data => {

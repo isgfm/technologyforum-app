@@ -90,6 +90,7 @@ export default {
   methods: {
     currentChange(newPage) {
       this.currentPage = newPage;
+      this.getThemeVOListFromServer(this.nodeRouter,this.currentPage,this.pageSize);
     },
     getThemeVOListFromServer(nodeRouter, page, pageSize) {
       getThemeListByNodeRouter(nodeRouter, page, pageSize).then(data => {

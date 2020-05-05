@@ -98,6 +98,11 @@ export default {
   methods: {
     currentChange(newPage) {
       this.currentPage = newPage;
+      this.getThemeListFromServer(
+      this.$route.params.userId,
+      this.currentPage,
+      this.pageSize
+    );
     },
     getThemeListFromServer(themeId, page, pageSize) {
       getThemeListByUserId(themeId, page, pageSize).then(data => {
