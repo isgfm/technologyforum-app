@@ -11,8 +11,11 @@ export default {
 };
 </script>
 
+<style src="./assets/css/common/bootstrap.min.css">
+
+</style>
 <style>
-@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css');
+/* @import url('https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'); */
 
 * { margin: 0; padding: 0; }
 
