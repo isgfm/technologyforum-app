@@ -159,6 +159,20 @@ const frontdeskRouter = {
                 title:'提醒',
                 requireLogin: true
             }
+        },
+        {
+            path:'/search/:searchContent',
+            components:{
+                main:r => require.ensure([], () => r(require('@frontdesk/searchResult/page/SearchResultMain')), 'SearchResultMain'),
+                right:r => require.ensure([], () => r(require('@frontdesk/searchResult/page/SearchResultRight')), 'SearchResultRight')
+            },
+            props:{
+                main:true,
+                right:false
+            },
+            meta:{
+                title:'搜索结果'
+            }
         }
     ]
 };

@@ -98,3 +98,16 @@ export function isHideTheme(themeId) {
       method: 'put'
     })
   }
+
+  export function getSearchThemeList(searchContent,page,pageSize){
+    const data = searchContent;
+    return request({
+        url:'/theme/themelist/search',
+        method:'post',
+        params:{
+            searchContent:searchContent,
+            page:page,
+            pageSize:pageSize
+        }
+    });
+}
