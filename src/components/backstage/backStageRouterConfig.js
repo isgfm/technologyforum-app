@@ -5,14 +5,14 @@ const backSatgeRouter = {
     component:BackStage,
     children:[
         {
-            path:'/theme',
+            path:'theme',
             component:r => require.ensure([], () => r(require('@backstage/components/themeManage/ThemeManage')), 'ThemeManage'),
             meta:{
                 title:'主题管理'
             }
         },
         {
-            path:'/user',
+            path:'user',
             component:r => require.ensure([], () => r(require('@backstage/components/userManage/UserManage')), 'UserManage'),
             meta:{
                 title:'用户管理'

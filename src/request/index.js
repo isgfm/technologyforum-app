@@ -74,6 +74,9 @@ service.interceptors.response.use(
             showClose: true,
             message: "未登录或登录超时，请重新登录哦"
           });
+          router.replace({
+            path: '/login'
+          })
         }
 
         return Promise.reject(res);

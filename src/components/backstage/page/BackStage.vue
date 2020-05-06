@@ -1,6 +1,6 @@
 <template>
   <el-container>
-      <el-header class="header">
+      <el-header class="backstage-header">
         <Header/>
       </el-header>
       <el-container>
@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style>
-.header {
+.backstage-header {
   background-color: #409EFF;
   color: #fff;
   line-height: 55px;

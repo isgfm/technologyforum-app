@@ -14,9 +14,11 @@ Vue.directive('title',  function (el, binding) {
   document.title = el.dataset.title
 })
 
-new Vue({
+const rootVueObj = new Vue({
   store,
   router,
   vuetify,
   render: h => h(App),
-}).$mount('#app')
+}).$mount('#app');
+
+export default rootVueObj;

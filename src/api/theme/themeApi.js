@@ -99,6 +99,17 @@ export function isHideTheme(themeId) {
     })
   }
 
+  export function getHideThemeList(page,pageSize) {
+    return request({
+      url: '/theme/hide/themelist',
+      method: 'get',
+      params:{
+        page:page,
+        pageSize:pageSize
+    }
+    })
+  }
+
   export function getSearchThemeList(searchContent,page,pageSize){
     const data = searchContent;
     return request({
