@@ -4,6 +4,7 @@ import ElementUI from 'element-ui'
 import store from '@/store/index';
 import router from '@/router/index'
 import '@/assets/theme/index.css'
+import 'element-ui/lib/theme-chalk/index.css';
 import Vuetify from 'vuetify/lib'
 Vue.use(Vuetify);
 Vue.use(ElementUI);
