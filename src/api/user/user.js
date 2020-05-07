@@ -102,3 +102,14 @@ export function isBlockUser(userId) {
     method: 'get'
   })
 }
+
+export function getBlockUserList(page,pageSize) {
+  return request({
+    url: '/user/block/userlist',
+    method: 'get',
+    params:{
+      page:page,
+      pageSize:pageSize
+  }
+  })
+}
