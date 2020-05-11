@@ -18,7 +18,7 @@
             <span>用户管理</span>
           </template>
           <el-menu-item-group>
-            <el-menu-item index="/manage/user">被封禁用户</el-menu-item>
+            <el-menu-item index="/manage/user">被封禁用户列表</el-menu-item>
           </el-menu-item-group>
         </el-submenu>
 

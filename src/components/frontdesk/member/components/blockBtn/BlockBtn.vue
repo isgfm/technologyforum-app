@@ -6,7 +6,12 @@
       </template>
     </template>
     <template v-else>
-      <el-button type="danger" round>用户已被封禁</el-button>
+      <template v-if="isAdmin">
+        <el-button type="danger" @click="cancleblock" round>取消封禁该用户</el-button>
+      </template>
+      <template v-else>
+        <el-button type="danger" round>用户已被封禁</el-button>
+      </template>
     </template>
   </div>
 </template>

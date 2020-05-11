@@ -99,6 +99,13 @@ export function isHideTheme(themeId) {
     })
   }
 
+  export function cancleHideTheme(themeId) {
+    return request({
+      url: '/theme/cancle/hide/'+themeId,
+      method: 'put'
+    })
+  }
+
   export function getHideThemeList(page,pageSize) {
     return request({
       url: '/theme/hide/themelist',

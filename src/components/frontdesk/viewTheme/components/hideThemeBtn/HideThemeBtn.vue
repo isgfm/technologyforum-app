@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { hideTheme, isHideTheme } from "@api/theme/themeApi";
+import { hideTheme, isHideTheme,cancleHideTheme } from "@api/theme/themeApi";
 export default {
   created() {
     this.isHide(this.themeId);
@@ -52,7 +52,29 @@ export default {
         })
         .catch((action) => {});
     },
-    cancleHide() {},
+    cancleHide() {
+      this.$confirm("是否取消隐藏主题", "确认信息", {
+        confirmButtonText: "确认",
+        cancelButtonText: "取消",
+      })
+        .then(() => {
+          cancleHideTheme(this.themeId)
+            .then((data) => {
+              this.HideStatus = false;
+              this.$message({
+                message: "取消隐藏主题成功",
+                type: "success",
+              });
+            })
+            .catch((error) => {
+              this.$message({
+                message: "取消隐藏主题失败",
+                type: "error",
+              });
+            });
+        })
+        .catch((action) => {});
+    },
   },
 };
 </script>

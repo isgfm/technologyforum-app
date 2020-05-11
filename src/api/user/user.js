@@ -91,7 +91,7 @@ export function blockUser(userId) {
 
 export function cancleBlockUser(userId) {
   return request({
-    url: '/user/block/cancle/'+userId,
+    url: '/user/cancle/block/'+userId,
     method: 'put'
   })
 }
