@@ -104,11 +104,11 @@ service.interceptors.response.use(
 
       //20007 验证码错误
       if (res.code === 20007) {
-        Message({
-          type: res,
-          showClose: true,
-          message: "验证码错误"
-        });
+        // Message({
+        //   type: res,
+        //   showClose: true,
+        //   message: "验证码错误"
+        // });
         return Promise.reject(res);
       }
 

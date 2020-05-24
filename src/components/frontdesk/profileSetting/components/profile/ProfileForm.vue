@@ -127,7 +127,7 @@ export default {
         {
           text: "女",
           value: 0,
-        },
+        }
       ],
     };
   },

@@ -18,7 +18,12 @@ const backSatgeRouter = {
                 title:'用户管理'
             }
         }
-    ]
+    ],
+    meta:{
+        title:'后台管理',
+        requireLogin: true,
+        needAdmin:true
+    }
 }
 
 export default backSatgeRouter;

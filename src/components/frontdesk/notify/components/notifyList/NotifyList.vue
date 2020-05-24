@@ -60,6 +60,9 @@ export default {
     };
   },
   methods: {
+    ftime:function(timespan){
+      return Ftime(timespan);
+    },
     currentChange(newPage) {
       this.currentPage = newPage;
       this.getNotifyListFromServe(this.currentPage, this.pageSize);
@@ -96,12 +99,12 @@ export default {
       if (notifyVO.notify.nNotifyType == 1) {
         notifyMessage = `<div>用户${userRouterHtml(
           notifyVO.sendUser
-        )}在主题${themeRouterHtml(notifyVO.occurTheme)}提到你</div>`;
+        )}在主题${themeRouterHtml(notifyVO.occurTheme)}提到你。${Ftime(notifyVO.notify.dCreateTime)}</div>`;
       }
       if (notifyVO.notify.nNotifyType == 2) {
         notifyMessage = `<p>用户${userRouterHtml(
           notifyVO.sendUser
-        )}在你的主题${themeRouterHtml(notifyVO.occurTheme)}中发表了回复</p>`;
+        )}在你的主题${themeRouterHtml(notifyVO.occurTheme)}中发表了回复。${Ftime(notifyVO.notify.dCreateTime)}</p>`;
       }
       return notifyMessage;
     },

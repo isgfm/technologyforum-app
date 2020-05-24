@@ -1,17 +1,27 @@
 <template>
   <div id="Rightbar">
-    <div class="sep20"></div>
+      <div class="sep20"></div>
+    <template v-if="isLogIn">
+      <profile-right/>
+      <div class="sep20"></div>
+    </template>
     <empty-right/>
   </div>
 </template>
 
 <script>
+import ProfileRight from "@frontdesk/common/right/ProfileRight"
 import EmptyRight from '@frontdesk/common/right/EmptyRight'
 export default {
-    name:'LoginRight',
     components:{
-        'empty-right':EmptyRight
+        ProfileRight,
+        EmptyRight
+    },
+    computed:{
+    isLogIn(){
+      return this.$store.state.userStore.user != null;
     }
+  }
 }
 </script>
 

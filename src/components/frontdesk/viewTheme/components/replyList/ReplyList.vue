@@ -76,6 +76,14 @@
             </div>
           </div>
         </div>
+        <!-- <template v-if="isMultiPage">
+          <Pagination
+            :pageSize="pageSize"
+            :total="totalReply"
+            :currentPage="currentPage"
+            @currentChange="currentChange"
+          />
+        </template> -->
       </div>
     </template>
   </div>

@@ -108,12 +108,12 @@ export default {
             .dispatch("register", that.signupForm)
             .then(() => {
                 that.$message({message: '注册成功 跳转至首页', type: 'success', showClose: true});
-              that.$router.go(-1);
+              that.$router.push("/");
             })
             .catch(error => {
               if (error !== "error") {
                 that.$message({
-                  message: error,
+                  message: error.message,
                   type: "error",
                   showClose: true
                 });

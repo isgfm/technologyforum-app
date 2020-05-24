@@ -2,7 +2,7 @@
   <div class="box">
     <content-header :tip="`设置`"></content-header>
     <div class="inner">
-      <ProfileForm />
+      <ProfileForm data-app="true"/>
     </div>
   </div>
 </template>

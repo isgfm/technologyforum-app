@@ -23,6 +23,10 @@
           <router-link to="/login">登录</router-link>
         </template>
           <template v-else>
+            <template v-if="isAdmin">
+              <router-link to="/manage" class="top">后台管理</router-link>
+            </template>
+            &nbsp;&nbsp;&nbsp;
             <router-link to="/">首页</router-link>
           &nbsp;&nbsp;&nbsp;
             <router-link :to="memberUrl(userId)" v-text="username" class="top"></router-link>
@@ -54,6 +58,9 @@ export default {
     },
     userId:function(){
       return this.$store.state.userStore.user.nId;
+    },
+    isAdmin() {
+      return this.$store.state.userStore.user != null&&this.$store.state.userStore.user.nAdmin==1;
     }
   },
   methods:{

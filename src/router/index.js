@@ -19,6 +19,16 @@ router.beforeEach((to, from, next) => {
     }
 
   if (getToken()) {
+    if(to.matched.some(r => r.meta.needAdmin)&&
+    (store.state.userStore.user == null||store.state.userStore.user.nAdmin != 1)){
+      Message({
+        type: "warning",
+        showClose: true,
+        message: "权限不足"
+      });
+      next({path:'/'})
+    }
+
     if (store.state.userStore.user === null) {
       store
         .dispatch("getUserInfo")
@@ -27,7 +37,7 @@ router.beforeEach((to, from, next) => {
           next();
         })
         .catch(error => {
-          next();
+          next({path:'/'})
         });
     }
     next();
